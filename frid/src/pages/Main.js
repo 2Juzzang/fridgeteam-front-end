@@ -30,6 +30,22 @@ export const Main = (props) => {
       name: "만두",
       id: 153,
     },
+    {
+      name: "만두",
+      id: 153,
+    },
+    {
+      name: "만두",
+      id: 153,
+    },
+    {
+      name: "만두",
+      id: 153,
+    },
+    {
+      name: "만두",
+      id: 153,
+    },
   ]
   return (
     <>
