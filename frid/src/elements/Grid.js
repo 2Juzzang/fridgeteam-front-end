@@ -33,15 +33,15 @@ Grid.defaultProps = {
   
 }
 
-const GridBox = styled.div `
-  width : ${(props) => props.width};
-  justify-content: ${(props) => props.justify_content?`justify-content: ${props.justify_content}`: ''} ;
+const GridBox = styled.div`
+  width: ${(props) => props.width};
+  justify-content: ${(props) =>
+    props.justify_content ? `${props.justify_content}` : ""};
   box-sizing: border-box; //테두리까지 포함한다는 마인드
-  ${(props) => props.padding?`padding: ${props.padding}`: ''}
-  ${(props) => props.margin?`margin: ${props.margin}`: ''}
-  ${(props) => props.bg?`background-color: ${props.bg}`: ''}
-  ${(props) => props.is_flex?'display: flex; align-items: center; ' : ""};
-  ${(props) => props.center? 'text-align: center;' : ""};
-
+  ${(props) => (props.padding ? `padding: ${props.padding}` : "")}
+  ${(props) => (props.margin ? `margin: ${props.margin}` : "")}
+  ${(props) => (props.bg ? `background-color: ${props.bg}` : "")}
+  ${(props) => (props.is_flex ? "display: flex; align-items: center; " : "")};
+  ${(props) => (props.center ? "text-align: center;" : "")};
 `
 export default Grid;
