@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from "styled-components"
-import defaultImage from "../종원이의냉장고-001.jpg"
+import defaultImage from "../종원이의냉장고-001.png"
 const Image = (props) => {
-    const {size,src,is_CircleImage,is_RectangleImage} = props;
+    const {size,src,is_CircleImage,is_RectangleImage,is_NoBorderImage} = props;
     const styles = {
         size: size,
         src: src,
@@ -19,6 +19,12 @@ const Image = (props) => {
              <RectangleImage {...styles}/>
          )
       }
+      if(is_NoBorderImage)
+      {
+          return (
+              <NoBorderImage {...styles}/>
+          )
+      }
 
       return(
           <RectangleImage {...styles}/>
@@ -31,7 +37,8 @@ Image.defaultProps= {
     size:100,
     src: defaultImage,
     is_CircleImage: false,
-    is_RectangleImage: false
+    is_RectangleImage: false,
+    is_NoBorderImage: false,
 }
 
 const CircleImage = styled.div`
@@ -54,4 +61,16 @@ const RectangleImage = styled.div`
  background-size: cover;
  margin: 4px;
 `
+const NoBorderImage = styled.div`
+  --size: ${(props) => props.size}px;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 5px;
+
+  background-image: url(${(props) => props.src});
+  background-size: cover;
+  margin: 4px;
+`;
+
+
 export default Image;

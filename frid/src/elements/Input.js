@@ -2,13 +2,16 @@ import React from 'react'
 import styled from "styled-components";
 
 const Input = (props) => {
-    const { type, label, id, placeholder, value, _onChange,text } = props;
-    
+    const { type, label, id, placeholder, value, _onChange,text,width } = props;
+       const styles= {
+         placeholder:placeholder,
+         width: width
+       }
     
         return (<div>
          <CustomLabel>{label}
              </CustomLabel>
-            <InputBox>
+            <InputBox {...styles} onChange={_onChange}>
            </InputBox>
         </div>
            
@@ -23,10 +26,14 @@ Input.defaultProps = {
     placeholder: "",
     value: "",
     _onChange: () => {},
+    width: false,
 }
 const InputBox = styled.input`
  
   margin-bottom: 30px;
+  width:300px;
+  height:50px;
+  font-size:20px;
 
   &:focus {
     
