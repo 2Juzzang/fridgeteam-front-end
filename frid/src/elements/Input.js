@@ -1,46 +1,52 @@
 import React from 'react'
 import styled from "styled-components";
+import Grid from "./Grid"
 
 const Input = (props) => {
-    const { type, label, id, placeholder, value, _onChange,text,width } = props;
-       const styles= {
+
+    
+  const { type, label, id, placeholder, value, _onChange, text, basket_input,width } =
+    props;
+  const styles= {
          placeholder:placeholder,
          width: width
        }
-    
-        return (<div>
-         <CustomLabel>{label}
-             </CustomLabel>
-            <InputBox {...styles} onChange={_onChange}>
-           </InputBox>
-        </div>
-           
-            
-          
-        )
-    
+
+  if (basket_input) {
+    return (
+      <BasketContinaer>
+        <BasketInput basket_input />
+      </BasketContinaer>
+    )
+  }
+
+  return (
+    <div>
+      <CustomLabel>{label}</CustomLabel>
+      <InputBox {...styles}></InputBox>
+    </div>
+  )
 }
 
 Input.defaultProps = {
-    label: "",
-    placeholder: "",
-    value: "",
-    _onChange: () => {},
-    width: false,
+  label: "",
+  placeholder: "",
+  value: "",
+  _onChange: () => {},
+  basket_input: false,
+  width:false,
+
 }
 const InputBox = styled.input`
- 
   margin-bottom: 30px;
   width:300px;
   height:50px;
   font-size:20px;
 
   &:focus {
-    
-   outline: #69db7c solid 1px;
-    
+    outline: #69db7c solid 1px;
   }
-`;
+`
 const CustomLabel = styled.label`
   display: inline-block;
   width: auto;
@@ -48,6 +54,23 @@ const CustomLabel = styled.label`
   margin-right: 10px;
   color: black;
   font-weight: 600;
-`;
+`
+
+const BasketContinaer = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+`
+
+const BasketInput = styled.input`
+  position: absolute;
+  right: 0;
+  padding: 33px;
+  border-radius: 5px;
+  &:focus {
+    outline: #69db7c solid 1px;
+  }
+`
 
 export default Input;
