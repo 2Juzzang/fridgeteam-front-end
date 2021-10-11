@@ -8,17 +8,7 @@ const Text = (props) => {
   return <P {...styles}>{children}</P>;
 };
 
-  const { bold, color, size, children, margin, padding } = props
-  const styles = {
-    bold: bold,
-    color: color,
-    size: size,
-    margin,
-    padding,
-  }
-  return <P {...styles}>{children}</P>
-}
-
+  
 Text.defaultProps = {
   children: null,
   bold: false,
@@ -29,7 +19,7 @@ Text.defaultProps = {
 
 };
 
-}
+
 
 const P = styled.p`
   color: ${(props) => props.color};
@@ -38,9 +28,9 @@ const P = styled.p`
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
   ${(props) => (props.padding ? `padding: ${props.padding};` : "")}
 `;
-export default Text;
 
-  ${(props) => (props.padding ? `pading: ${props.padding};` : "")}
-`
+
+  
+
 export default Text;
 

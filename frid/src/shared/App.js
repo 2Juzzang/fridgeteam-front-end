@@ -1,7 +1,7 @@
 import { ConnectedRouter } from "connected-react-router";
 import React from "react";
 import { Route } from "react-router-dom";
-
+import Login from "../pages/Login"
 import Button from "../elements/Button";
 import Grid from "../elements/Grid";
 import Image from "../elements/Image";
@@ -10,6 +10,7 @@ import Text from "../elements/Text";
 import { Main } from "../pages/Main";
 import List from "../pages/List";
 import Detail from "../pages/Detail";
+import Signup from "../pages/Signup";
 import { history } from "../redux/configStore";
 import "./App.css";
 

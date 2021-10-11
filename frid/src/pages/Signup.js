@@ -27,7 +27,7 @@ const Signup = (props) => {
       <Grid is_flex>
         <Input placeholder='이메일(@,.이 들어갑니다)' />
       </Grid>
-      <Grid margin='0px 490px'>
+      <Grid margin='0px 0px 0px 490px'>
         <Button
           is_RectangleCancleBtn
           size=''

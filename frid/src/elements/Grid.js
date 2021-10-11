@@ -40,8 +40,7 @@ const Grid = (props) => {
   );
 };
 
-  )
-}
+  
 
 Grid.defaultProps = {
   children: null,
@@ -53,13 +52,11 @@ Grid.defaultProps = {
   center: false,
   _onClick: () => {},
   justify_content: false,
-
+borderRadius: false,
   flex_wrap: false,
 };
 
-  is_grid: false,
-  borderRadius: false,
-}
+
 
 
 const GridBox = styled.div`
@@ -74,14 +71,12 @@ const GridBox = styled.div`
   ${(props) => (props.center ? "text-align: center;" : "")};
 
   flex-wrap: ${(props) => (props.flex_wrap ? `${props.flex_wrap};` : "")};
-`;
-export default Grid;
-
   ${(props) =>
     props.is_grid
       ? "display: grid; grid-template-columns: repeat(4,1fr); grid-gap: 80px;    position: absolute; top:50%; left:50%; transform:translate(-50%, -50%);padding-right: 50px; padding-left: 50px;"
       : ""}
   ${(props) => (props.borderRadius ? "border-radius:10px" : "")}
-`
+`;
 export default Grid;
 
+ 

@@ -3,7 +3,7 @@ import React from 'react'
 import styled from "styled-components"
 import defaultImage from "../종원이의냉장고-001.png"
 const Image = (props) => {
-    const {size,src,is_CircleImage,is_RectangleImage,is_NoBorderImage} = props;
+    const {size,src,is_CircleImage,is_RectangleImage,is_NoBorderImage,is_basketList} = props;
     const styles = {
         size: size,
         src: src,
@@ -26,6 +26,9 @@ const Image = (props) => {
               <NoBorderImage {...styles}/>
           )
       }
+      if (is_basketList) {
+    return <BasketList {...styles} />
+  }
 
       return(
           <RectangleImage {...styles}/>
@@ -40,42 +43,10 @@ Image.defaultProps= {
     is_CircleImage: false,
     is_RectangleImage: false,
     is_NoBorderImage: false,
-
-import React from "react";
-import styled from "styled-components";
-import defaultImage from "../종원이의냉장고-001.png";
-const Image = (props) => {
-
- 
-
-  const { size, src, is_CircleImage, is_RectangleImage, is_basketList } = props
-  const styles = {
-    size: size,
-    src: src,
-    is_basketList,
-  }
-  if (is_CircleImage) {
-    return <CircleImage {...styles} />
-  }
-  if (is_RectangleImage) {
-    return <RectangleImage {...styles} />
-  }
-  if (is_basketList) {
-    return <BasketList {...styles} />
-  }
-
-  return <RectangleImage {...styles} />
+    is_basketList: false,
 }
 
-Image.defaultProps = {
-  size: 100,
-  src: defaultImage,
-  is_CircleImage: false,
-  is_RectangleImage: false,
 
-};
-
-}
 
 
 const CircleImage = styled.div`

@@ -22,7 +22,7 @@ const Login = (props) => {
         <Input placeholder='비밀번호' />
       </Grid>
       
-      <Grid margin="0px 390px">
+      <Grid margin="0px 0px 0px 390px">
         <Button is_RectangleCancleBtn size='' text='회원가입' _onClick={()=> history.push('/signup')} />
         <Button
           is_RectangleSubmitBtn
