@@ -1,7 +1,23 @@
-import React from 'react'
-import styled from "styled-components"
-import defaultImage from "../종원이의냉장고-001.jpg"
+import React from "react";
+import styled from "styled-components";
+import defaultImage from "../종원이의냉장고-001.png";
 const Image = (props) => {
+
+  const { size, src, is_CircleImage, is_RectangleImage } = props;
+  const styles = {
+    size: size,
+    src: src,
+  };
+  if (is_CircleImage) {
+    return <CircleImage {...styles} />;
+  }
+  if (is_RectangleImage) {
+    return <RectangleImage {...styles} />;
+  }
+
+  return <RectangleImage {...styles} />;
+};
+
   const { size, src, is_CircleImage, is_RectangleImage, is_basketList } = props
   const styles = {
     size: size,
@@ -26,7 +42,10 @@ Image.defaultProps = {
   src: defaultImage,
   is_CircleImage: false,
   is_RectangleImage: false,
+
+};
 }
+
 
 const CircleImage = styled.div`
   --size: ${(props) => props.size}px;
@@ -37,7 +56,11 @@ const CircleImage = styled.div`
   background-image: url(${(props) => props.src});
   background-size: cover;
   margin: 4px;
+
+`;
+
 `
+
 const RectangleImage = styled.div`
   --size: ${(props) => props.size}px;
   width: var(--size);
@@ -47,6 +70,10 @@ const RectangleImage = styled.div`
   background-image: url(${(props) => props.src});
   background-size: cover;
   margin: 4px;
+
+`;
+export default Image;
+
 `
 const BasketList = styled.div`
   width: 100vw;
@@ -61,3 +88,4 @@ const BasketList = styled.div`
 `
 
 export default Image;
+
