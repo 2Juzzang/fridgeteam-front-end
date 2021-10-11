@@ -45,10 +45,12 @@ const Button = (props) => {
     )
   }
   return (
-    <div>
-      <RectangleSubmitBtn {...styles} />
-    </div>
-  )
+    
+      <RectangleSubmitBtn {...styles} >
+      {text ? text : children}
+      </RectangleSubmitBtn>
+    
+  );
 }
 
 Button.defaultProps = {

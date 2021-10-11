@@ -3,8 +3,14 @@ import styled from "styled-components";
 import Grid from "./Grid"
 
 const Input = (props) => {
-  const { type, label, id, placeholder, value, _onChange, text, basket_input } =
-    props
+
+    
+  const { type, label, id, placeholder, value, _onChange, text, basket_input,width } =
+    props;
+  const styles= {
+         placeholder:placeholder,
+         width: width
+       }
 
   if (basket_input) {
     return (
@@ -17,7 +23,7 @@ const Input = (props) => {
   return (
     <div>
       <CustomLabel>{label}</CustomLabel>
-      <InputBox></InputBox>
+      <InputBox {...styles}></InputBox>
     </div>
   )
 }
@@ -28,9 +34,14 @@ Input.defaultProps = {
   value: "",
   _onChange: () => {},
   basket_input: false,
+  width:false,
+
 }
 const InputBox = styled.input`
   margin-bottom: 30px;
+  width:300px;
+  height:50px;
+  font-size:20px;
 
   &:focus {
     outline: #69db7c solid 1px;
