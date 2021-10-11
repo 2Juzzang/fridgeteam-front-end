@@ -13,7 +13,7 @@ const List = (props) => {
           _onClick={() => {
             history.push("/detail");
           }}
-          margin="0 0 0 auto"
+          margin="0 auto 0 0"
         >
           <Image size="470"></Image>
           <Text padding="15px 0px" size="20px">
@@ -25,7 +25,19 @@ const List = (props) => {
           _onClick={() => {
             history.push("/detail");
           }}
-          margin="0 0 0 auto"
+          margin="0 auto 0 0"
+        >
+          <Image size="470"></Image>
+          <Text padding="15px 0px" size="20px">
+            {"치킨"}
+          </Text>
+        </Grid>
+
+        <Grid
+          _onClick={() => {
+            history.push("/detail");
+          }}
+          margin="0 auto 0 0"
         >
           <Image size="470"></Image>
           <Text padding="15px 0px" size="20px">
