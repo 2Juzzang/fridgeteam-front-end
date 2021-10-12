@@ -16,7 +16,7 @@ const Grid = (props) => {
     is_grid,
     borderRadius,
     basket,
-  } = props
+  } = props;
 
   const styles = {
     is_flex: is_flex,
@@ -31,14 +31,14 @@ const Grid = (props) => {
     is_grid,
     borderRadius,
     basket,
-  }
+  };
 
   return (
     <GridBox {...styles} onClick={_onClick}>
       {children}
     </GridBox>
-  )
-}
+  );
+};
 
 Grid.defaultProps = {
   children: null,
@@ -52,8 +52,8 @@ Grid.defaultProps = {
   justify_content: false,
   borderRadius: false,
   flex_wrap: false,
-  basket:false,
-}
+  basket: false,
+};
 
 const GridBox = styled.div`
   width: ${(props) => props.width};
@@ -70,8 +70,9 @@ const GridBox = styled.div`
     props.is_grid
       ? "display: grid; grid-template-columns: repeat(4,1fr); grid-gap: 80px; position: absolute; top:50%; left:50%; transform:translate(-50%, -50%); padding-right: 50px; padding-left: 50px;"
       : ""}
-  ${(props) => props.basket ? "padding:10px 20px; border-radius:10px; &:hover{background-color:#ed2b2bd4; cursor: pointer; transition: 0.3s ease-in-out;}" : ""} 
-`
+  ${(props) =>
+    props.basket
+      ? "padding:10px 20px; border-radius:10px; &:hover{background-color:#ed2b2bd4; cursor: pointer; transition: 0.3s ease-in-out;}"
+      : ""}
+`;
 export default Grid;
-
- 

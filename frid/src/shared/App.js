@@ -1,7 +1,7 @@
 import { ConnectedRouter } from "connected-react-router";
 import React from "react";
 import { Route } from "react-router-dom";
-import Login from "../pages/Login"
+import Login from "../pages/Login";
 import Button from "../elements/Button";
 import Grid from "../elements/Grid";
 import Image from "../elements/Image";
@@ -13,7 +13,7 @@ import Detail from "../pages/Detail";
 import Signup from "../pages/Signup";
 import { history } from "../redux/configStore";
 import "./App.css";
-import { useSelector } from "react-redux"
+import { useSelector } from "react-redux";
 
 function App() {
   return (
@@ -23,10 +23,10 @@ function App() {
         <Route path="/signup" exact component={Signup} />
         <Route path="/" exact component={Main} />
         <Route path="/list/:id" exact component={List} />
-        <Route path="/detail" exact component={Detail} />
+        <Route path="/detail/:i" exact component={Detail} />
       </ConnectedRouter>
     </div>
-  )
+  );
 }
 
 export default App;
