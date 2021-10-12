@@ -7,9 +7,12 @@ import Input from "../elements/Input"
 import Text from "../elements/Text"
 import { history } from "../redux/configStore"
 import { actionsCreators as basketActions } from "../redux/modules/basketList"
+import { inputCheck } from "../shared/inputCheck"
 
 export const BasketList = (props) => {
   const dispatch = useDispatch()
+  const name = useSelector((state) => state.basketList.basket_list)
+  console.log(name)
   const [item, setItem] = useState("")
 
   useEffect(() => {
@@ -22,10 +25,21 @@ export const BasketList = (props) => {
     setItem(e.target.value)
   }
 
+  const addBtn = () => {
+    if (inputCheck.test(item)) {
+      dispatch(basketActions.addListMiddlewares(item))
+    } else {
+      window.alert("1~6글자 한글만 입력가능")
+      return
+    }
+  }
+
   return (
     <>
       <Grid is_flex justify_content="space-between">
-        <Image />
+        <Grid>
+          <Image />
+        </Grid>
         <Button
           is_RectangleSubmitBtn
           margin="10px 0px"
@@ -47,11 +61,15 @@ export const BasketList = (props) => {
                 <Grid
                   width="auto"
                   padding="0 20px"
-                  bg="#fff"
+                  bg="#000"
                   borderRadius
                   key={e.id}
+                  _onClick={() => {
+                    console.log("재료선택")
+                    history.push(`/list/${e.name}`)
+                  }}
                 >
-                  <Text color="#008eff" size="24px">
+                  <Text color="#efefef" size="24px">
                     {e.name}
                   </Text>
                 </Grid>
@@ -62,14 +80,7 @@ export const BasketList = (props) => {
 
       <Grid is_flex margin="40px 0px" justify_content="flex-end">
         <Input basket_input _onChange={addList} />
-        <Button
-          is_RectangleSubmitBtn
-          size="90"
-          _onClick={() => {
-            setItem("")
-            dispatch(basketActions.addListMiddlewares(item))
-          }}
-        >
+        <Button is_RectangleSubmitBtn size="90" _onClick={addBtn}>
           재료추가
         </Button>
       </Grid>

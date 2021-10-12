@@ -13,19 +13,20 @@ import Detail from "../pages/Detail";
 import Signup from "../pages/Signup";
 import { history } from "../redux/configStore";
 import "./App.css";
+import { useSelector } from "react-redux"
 
 function App() {
   return (
     <div className="App">
       <ConnectedRouter history={history}>
-        <Route path="/login" exact component={Login}/>
-        <Route path="/signup" exact component={Signup}/>
+        <Route path="/login" exact component={Login} />
+        <Route path="/signup" exact component={Signup} />
         <Route path="/" exact component={Main} />
-        <Route path="/list" exact component={List} />
+        <Route path="/list/:id" exact component={List} />
         <Route path="/detail" exact component={Detail} />
       </ConnectedRouter>
     </div>
-  );
+  )
 }
 
 export default App;

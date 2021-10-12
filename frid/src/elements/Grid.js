@@ -17,7 +17,6 @@ const Grid = (props) => {
     borderRadius,
   } = props
 
-
   const styles = {
     is_flex: is_flex,
     width: width,
@@ -36,11 +35,8 @@ const Grid = (props) => {
     <GridBox {...styles} onClick={_onClick}>
       {children}
     </GridBox>
-
-  );
-};
-
-  
+  )
+}
 
 Grid.defaultProps = {
   children: null,
@@ -56,9 +52,6 @@ Grid.defaultProps = {
   flex_wrap: false,
 }
 
-
-
-
 const GridBox = styled.div`
   width: ${(props) => props.width};
   justify-content: ${(props) =>
@@ -69,14 +62,13 @@ const GridBox = styled.div`
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
   ${(props) => (props.is_flex ? "display: flex; align-items: center; " : "")};
   ${(props) => (props.center ? "text-align: center;" : "")};
-
   flex-wrap: ${(props) => (props.flex_wrap ? `${props.flex_wrap};` : "")};
   ${(props) =>
     props.is_grid
-      ? "display: grid; grid-template-columns: repeat(4,1fr); grid-gap: 80px;    position: absolute; top:50%; left:50%; transform:translate(-50%, -50%);padding-right: 50px; padding-left: 50px;"
+      ? "display: grid; grid-template-columns: repeat(4,1fr); grid-gap: 80px; position: absolute; top:50%; left:50%; transform:translate(-50%, -50%); padding-right: 50px; padding-left: 50px;"
       : ""}
   ${(props) => (props.borderRadius ? "border-radius:10px" : "")}
-`;
+`
 export default Grid;
 
  
