@@ -2,13 +2,14 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import {createBrowserHistory} from "history";
 import {connectRouter} from "connected-react-router"
+import basketList from "./modules/basketList"
 
-export const history = createBrowserHistory();
+export const history = createBrowserHistory()
 
 const rootReducer = combineReducers({
-
+  basketList,
   router: connectRouter(history),
-});
+})
 
 const middlewares = [thunk.withExtraArgument({history:history})]; //액션생성자에서 사용함
 
