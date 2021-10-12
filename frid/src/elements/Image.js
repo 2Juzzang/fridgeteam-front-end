@@ -46,9 +46,6 @@ Image.defaultProps= {
     is_basketList: false,
 }
 
-
-
-
 const CircleImage = styled.div`
   --size: ${(props) => props.size}px;
   width: var(--size);
@@ -58,10 +55,7 @@ const CircleImage = styled.div`
   background-image: url(${(props) => props.src});
   background-size: cover;
   margin: 4px;
-
-`;
-
-
+`
 
 const RectangleImage = styled.div`
   --size: ${(props) => props.size}px;
@@ -72,22 +66,21 @@ const RectangleImage = styled.div`
   background-image: url(${(props) => props.src});
   background-size: cover;
   margin: 4px;
-
-`;
-
-
+  @media only screen and (max-width: 768px) {
+    width: 60px;
+    height: 60px;
+  }
+`
 
 const NoBorderImage = styled.div`
   --size: ${(props) => props.size}px;
   width: var(--size);
   height: var(--size);
   border-radius: 5px;
-
   background-image: url(${(props) => props.src});
   background-size: cover;
   margin: 4px;
-`;
-
+`
 
 const BasketList = styled.div`
   width: 100vw;
@@ -96,9 +89,9 @@ const BasketList = styled.div`
   border: 1px solid;
   background-image: url(${(props) => props.src});
   background-size: cover;
-  margin: 4px;
   ${(props) => (props.is_bg ? "position:fixed; z-index:-1" : "")}
   background-position: center center;
+  opacity: 0.8;
 `
 
 export default Image;
