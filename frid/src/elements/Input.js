@@ -23,7 +23,7 @@ const Input = (props) => {
   return (
     <div>
       <CustomLabel>{label}</CustomLabel>
-      <InputBox {...styles}></InputBox>
+      <InputBox {...styles} onChange={_onChange}></InputBox>
     </div>
   )
 }
