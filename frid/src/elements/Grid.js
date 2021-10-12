@@ -15,8 +15,8 @@ const Grid = (props) => {
     flex_wrap,
     is_grid,
     borderRadius,
+    basket,
   } = props
-
 
   const styles = {
     is_flex: is_flex,
@@ -30,34 +30,30 @@ const Grid = (props) => {
     flex_wrap: flex_wrap,
     is_grid,
     borderRadius,
+    basket,
   }
 
   return (
     <GridBox {...styles} onClick={_onClick}>
       {children}
     </GridBox>
-
-  );
-};
-
-  
+  )
+}
 
 Grid.defaultProps = {
   children: null,
   is_flex: false,
-  width: false,
+  width: "100%",
   padding: false,
   margin: false, //만약에 패딩과 margin의 값이 있으면 그거 그대로 들어가게 하기 위한 설정
   bg: false,
   center: false,
   _onClick: () => {},
   justify_content: false,
-borderRadius: false,
+  borderRadius: false,
   flex_wrap: false,
-};
-
-
-
+  basket:false,
+}
 
 const GridBox = styled.div`
   width: ${(props) => props.width};
@@ -69,14 +65,13 @@ const GridBox = styled.div`
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
   ${(props) => (props.is_flex ? "display: flex; align-items: center; " : "")};
   ${(props) => (props.center ? "text-align: center;" : "")};
-
   flex-wrap: ${(props) => (props.flex_wrap ? `${props.flex_wrap};` : "")};
   ${(props) =>
     props.is_grid
-      ? "display: grid; grid-template-columns: repeat(4,1fr); grid-gap: 80px;    position: absolute; top:50%; left:50%; transform:translate(-50%, -50%);padding-right: 50px; padding-left: 50px;"
+      ? "display: grid; grid-template-columns: repeat(4,1fr); grid-gap: 80px; position: absolute; top:50%; left:50%; transform:translate(-50%, -50%); padding-right: 50px; padding-left: 50px;"
       : ""}
-  ${(props) => (props.borderRadius ? "border-radius:10px" : "")}
-`;
+  ${(props) => props.basket ? "padding:10px 20px; border-radius:10px; &:hover{background-color:#ed2b2bd4; cursor: pointer; transition: 0.3s ease-in-out;}" : ""} 
+`
 export default Grid;
 
  

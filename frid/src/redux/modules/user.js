@@ -24,7 +24,7 @@ const loginAPI = (username, password) => {
   {
     axios({
       method: 'POST',
-      url: 'http://localhost:3001/user',
+      url: 'http://52.79.109.55/user/login',
       data: {
         username: username,
         password: password,
@@ -32,22 +32,22 @@ const loginAPI = (username, password) => {
     })
       .then((res) => {
         // if (res.data.token != null) {
-          console.log(res.data);
-          const jwtToken = res.data.token;
-          const _id = res.data.username;
-          console.log(res.data.username);
-          setCookie('user_login', jwtToken);
-          localStorage.setItem('user_name', _id);
-          // axios.defaults.headers.common['Authorization'] = `${jwtToken}`;
-          dispatch(
-            logIn({
-              username: username,
-              password: password,
-            })
-          );
-          window.alert('로그인 되었습니다!');
-          history.push('/');
-        // } 
+        console.log(res.data);
+        const jwtToken = res.data.token;
+        const _id = res.data.username;
+        console.log(res.data.username);
+        setCookie('user_login', jwtToken);
+        localStorage.setItem('user_name', _id);
+        // axios.defaults.headers.common['Authorization'] = `${jwtToken}`;
+        dispatch(
+          logIn({
+            username: username,
+            password: password,
+          })
+        );
+        window.alert('로그인 되었습니다!');
+        history.push('/');
+        // }
         // else {
         //   window.alert('ID를 다시 확인해주세요');
         // }
