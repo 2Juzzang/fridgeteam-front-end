@@ -66,8 +66,9 @@ const BasketContinaer = styled.div`
 const BasketInput = styled.input`
   position: absolute;
   right: 0;
-  padding: 33px;
+  padding: 22px;
   border-radius: 5px;
+  font-size: 30px;
   &:focus {
     outline: #69db7c solid 1px;
   }
