@@ -15,7 +15,7 @@ const Input = (props) => {
   if (basket_input) {
     return (
       <BasketContinaer>
-        <BasketInput basket_input />
+        <BasketInput basket_input onChange={_onChange} />
       </BasketContinaer>
     )
   }
