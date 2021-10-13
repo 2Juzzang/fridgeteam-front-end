@@ -16,37 +16,37 @@ const initialState = {
 }
 
 const instance = axios.create({
-  // baseURL: "http://13.125.231.18",
-  baseURL: 'http://3.36.72.109',
+  baseURL: "http://3.36.72.109",
+  // baseURL: "http://localhost:3002",
   headers: {
-    'content-type': 'application/json;charset=UTF-8',
-    accept: 'application/json',
+    "content-type": "application/json;charset=UTF-8",
+    accept: "application/json",
   },
-});
+})
 
-const addListMiddlewares = (item) => {
+const addListMiddlewares = (ingredient) => {
   return function (dispatch, getState, { history }) {
     const list = getState().basketList.basket_list
 
-    if (!item) {
+    if (!ingredient) {
       return
     }
 
     if (list.length < 20) {
       instance
-        .post('/api/recipe', { ingredient: item })
+        .post("/api/recipe", { ingredient })
         .then((res) => {
           dispatch(
             add_list({
-              ingredient: item,
+              ingredient,
               id: res.data.id,
             })
-          );
-          history.replace('/');
+          )
+          history.replace("/")
         })
         .catch((err) => {
-          console.log(err, 'postList 에러입니다.');
-        });
+          console.log(err, "postList 에러입니다.")
+        })
     } else {
       window.alert("재료가 너무 많습니다.")
       return
@@ -57,27 +57,35 @@ const addListMiddlewares = (item) => {
 const getListMiddleWares = () => {
   return function (dispatch, getState, { history }) {
     instance
-      .get('/api/recipe')
+      .get("/api/recipe")
       .then((res) => {
-        const list = res.data;
-        dispatch(load_list(list));
+        const list = res.data
+        dispatch(load_list(list))
       })
       .catch((err) => {
-        console.log(err, 'getList 에러 입니다.');
-      });
+        console.log(err, "getList 에러 입니다.")
+      })
   }
 }
 
-const deleteListMiddleWares = (basket_id) => {
+const deleteListMiddleWares = (list) => {
   return function (dispatch, getState, { history }) {
+    console.log("cmrk", list)
+    const { ingredient, id } = list
+    console.log("dasf", ingredient)
     instance
-      .delete(`/api/recipe/${basket_id}`)
+      .delete(`/api/recipe`, {
+        data: {
+          // ingredient,
+          ...list,
+        },
+      })
       .then((res) => {
-        dispatch(delete_list(basket_id));
+        dispatch(delete_list(list))
       })
       .catch((err) => {
-        console.log(err, '삭제에러');
-      });
+        console.log(err, "삭제에러")
+      })
   }
 }
 export default handleActions(
@@ -92,8 +100,10 @@ export default handleActions(
       }),
     [DELETE_LIST]: (state, action) =>
       produce(state, (draft) => {
+        console.log(action.payload.basket_id.ingredient)
+
         let idx = draft.basket_list.findIndex((p) => {
-          return p.id === action.payload.basket_id
+          return p.ingredient === action.payload.basket_id.ingredient
         })
 
         if (idx !== -1) {

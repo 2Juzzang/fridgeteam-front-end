@@ -9,14 +9,6 @@
       "id": 9
     },
     {
-      "ingredient": "비리",
-      "id": 10
-    },
-    {
-      "ingredient": "리",
-      "id": 12
-    },
-    {
       "ingredient": "리히",
       "id": 13
     },
@@ -75,6 +67,10 @@
     {
       "ingredient": "식재료",
       "id": 56
+    },
+    {
+      "ingredient": "추가여",
+      "id": 57
     }
   ]
 }

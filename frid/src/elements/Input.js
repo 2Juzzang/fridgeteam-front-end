@@ -80,7 +80,7 @@ const BasketInput = styled.input`
   padding: 27px;
   border-radius: 5px;
   font-size: 30px;
-  width: 30%;
+  width: auto;
   height: 50%;
   &:focus {
     outline: #69db7c solid 1px;
