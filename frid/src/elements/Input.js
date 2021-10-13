@@ -3,19 +3,31 @@ import styled from "styled-components";
 import Grid from "./Grid"
 
 const Input = (props) => {
-
-    
-  const { type, label, id, placeholder, value, _onChange, text, basket_input,width } =
-    props;
-  const styles= {
-         placeholder:placeholder,
-         width: width
-       }
+  const {
+    type,
+    label,
+    id,
+    placeholder,
+    _onChange,
+    text,
+    basket_input,
+    width,
+    value,
+  } = props
+  const styles = {
+    placeholder: placeholder,
+    width: width,
+    value,
+  }
 
   if (basket_input) {
     return (
       <BasketContinaer>
-        <BasketInput basket_input onChange={_onChange} />
+        <BasketInput
+          value={value}
+          placeholder={placeholder}
+          onChange={_onChange}
+        />
       </BasketContinaer>
     )
   }
@@ -31,17 +43,16 @@ const Input = (props) => {
 Input.defaultProps = {
   label: "",
   placeholder: "",
-  value: "",
   _onChange: () => {},
   basket_input: false,
-  width:false,
-
+  width: false,
+  value: "",
 }
 const InputBox = styled.input`
   margin-bottom: 30px;
-  width:300px;
-  height:50px;
-  font-size:20px;
+  width: 300px;
+  height: 50px;
+  font-size: 20px;
 
   &:focus {
     outline: #69db7c solid 1px;
@@ -75,7 +86,8 @@ const BasketInput = styled.input`
     outline: #69db7c solid 1px;
   }
   @media only screen and (max-width: 768px) {
-    font-size: 16px;
+    font-size: 12px;
+    grid-template-columns: repeat(3, 1fr);
   }
 `
 

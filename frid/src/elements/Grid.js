@@ -64,17 +64,16 @@ const GridBox = styled.div`
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
   ${(props) => (props.is_flex ? "display: flex; align-items: center; " : "")};
-  ${(props) => (props.center ? "text-align: center;" : "")};
+  ${(props) => (props.center ? "text-textAlign: center;" : "")};
   flex-wrap: ${(props) => (props.flex_wrap ? `${props.flex_wrap};` : "")};
   ${(props) =>
     props.is_grid
-      ? "display: grid; grid-template-columns: repeat(4,1fr); grid-gap: 1rem; position: absolute; top:50%; left:50%; transform:translate(-50%, -50%)"
+      ? "display: grid; grid-template-columns: repeat(4,1fr); grid-gap: 1rem; position: absolute; top:50%; left:50%; transform:translate(-50%, -50%) "
       : ""}
   ${(props) =>
     props.basket
-      ? "padding:10px 20px; border-radius:10px; &:hover{background-color:#ed2b2bd4; cursor: pointer; transition: 0.3s ease-in-out;}"
+      ? "padding:10px 20px; border-radius:10px; &:hover{background-color:#000000de; cursor: pointer; transition: 0.4s ease-in-out; padding: 25px;}"
       : ""}
 `
 
 export default Grid
-
