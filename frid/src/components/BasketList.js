@@ -1,4 +1,3 @@
-import styled from "styled-components"
 import React, { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import Button from "../elements/Button"
@@ -12,18 +11,16 @@ import { inputCheck } from "../shared/inputCheck"
 import { Blank } from "./Blank"
 
 export const BasketList = (props) => {
+  const dispatch = useDispatch()
+  const [text, setText] = useState("")
 
- const dispatch = useDispatch()
- const [text, setText] = useState("")
- 
- const list = useSelector((state) => state.basketList.basket_list)
+  const list = useSelector((state) => state.basketList.basket_list)
   useEffect(() => {
     dispatch(basketActions.getListMiddleWares())
   }, [])
 
   const addList = (e) => {
     setText(e.target.value)
-    console.log(e.target.value)
   }
 
   const addBtn = (e) => {
@@ -33,22 +30,20 @@ export const BasketList = (props) => {
         return
       }
     }
-    
+
     // if (!inputCheck.test(text)) {
     //   window.alert("1~6글자 한글만 입력가능")
     //   return
     // }
 
     dispatch(basketActions.addListMiddlewares(text))
-    console.log(text)
     setText("")
-    console.log(text)
-  };
+  }
 
   return (
     <>
       <Grid is_flex justify_content="space-between">
-        <Grid>
+        <Grid margin="0">
           <Image />
         </Grid>
         <Button
@@ -88,7 +83,13 @@ export const BasketList = (props) => {
                       is_detBtn
                       _onClick={() => {
                         if (window.confirm("삭제하시겠습니까?")) {
-                          dispatch(basketActions.deleteListMiddleWares(e.id))
+                          console.log(e.ingredient)
+                          dispatch(
+                            basketActions.deleteListMiddleWares({
+                              ingredient: e.ingredient,
+                              id: e.id,
+                            })
+                          )
                         } else {
                           window.alert("취소하셨습니다.")
                           return
@@ -117,7 +118,6 @@ export const BasketList = (props) => {
       </Grid>
 
       <Grid is_flex margin="40px 0px" justify_content="flex-end">
-
         <Input
           basket_input
           _onChange={addList}
@@ -125,7 +125,7 @@ export const BasketList = (props) => {
           placeholder="식재료를 입력해주세요"
         />
         <Button is_RectangleSubmitBtn size="50" _onClick={addBtn}>
-              추가
+          추가
         </Button>
       </Grid>
     </>
@@ -134,5 +134,4 @@ export const BasketList = (props) => {
 
 BasketList.defaultProps = {
   src: "https://t1.daumcdn.net/cfile/tistory/2533CF4F57B4E62307",
-};
-
+}

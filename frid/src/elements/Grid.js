@@ -43,7 +43,7 @@ const Grid = (props) => {
 Grid.defaultProps = {
   children: null,
   is_flex: false,
-  width: false,
+  width: "",
   padding: false,
   margin: false, //만약에 패딩과 margin의 값이 있으면 그거 그대로 들어가게 하기 위한 설정
   bg: false,
@@ -53,7 +53,7 @@ Grid.defaultProps = {
   borderRadius: false,
   flex_wrap: false,
   basket: false,
-};
+}
 
 const GridBox = styled.div`
   width: ${(props) => props.width};
