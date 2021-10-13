@@ -9,7 +9,7 @@ import Input from "../elements/Input";
 import Text from "../elements/Text";
 import { Main } from "../pages/Main";
 import List from "../pages/List";
-import Detail from "../pages/Detail";
+import Recipe from "../pages/Recipe";
 import Signup from "../pages/Signup";
 import { history } from "../redux/configStore";
 import "./App.css";
@@ -23,7 +23,7 @@ function App() {
         <Route path="/signup" exact component={Signup} />
         <Route path="/" exact component={Main} />
         <Route path="/list/:id" exact component={List} />
-        <Route path="/detail/:i" exact component={Detail} />
+        <Route path="/recipe/:name" exact component={Recipe} />
       </ConnectedRouter>
     </div>
   );

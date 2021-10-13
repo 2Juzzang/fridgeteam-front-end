@@ -1,29 +1,26 @@
-import React, { useDebugValue } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Image from "../elements/Image";
 import Text from "../elements/Text";
 import { loadList } from "../redux/modules/list";
 
-const Detail = (props) => {
+const Recipe = (props) => {
   const list_detail = useSelector((state) => state.list.list);
-  const detail_index = props.match.params.i;
+  const detail_index = props.match.params;
   const dispatch = useDispatch();
-  console.log("aa", detail_index, list_detail);
-  React.useEffect(() => {
-    dispatch(loadList());
-  }, []);
+  console.log("디테일 인덱스", detail_index, "리스트 디테일", list_detail);
+  
   return (
     <>
-      <Image src={list_detail[detail_index].img} size="1000"></Image>
+      <Image src={list_detail[1].img} size="1000"></Image>
       <Text bold size="36px" padding="20px 0">
-        {list_detail[detail_index].name}
+        {list_detail[1].name}
       </Text>
       <hr />
       <Text bold size="24px" padding="20px 0">
         재료
       </Text>
-      <Text margin="0 0 20px 0">{list_detail[detail_index].name}</Text>
-      {/* <hr style={{ margin: "30px 0 10px 0" }} /> */}
+      <Text margin="0 0 20px 0">{list_detail[1].name}</Text>
       <Text bold size="24px" padding="10px 0">
         RECIPE
       </Text>
@@ -43,4 +40,4 @@ const Detail = (props) => {
   );
 };
 
-export default Detail;
+export default Recipe;

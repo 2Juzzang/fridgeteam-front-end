@@ -12,11 +12,11 @@ import { inputCheck } from "../shared/inputCheck"
 import { Blank } from "./Blank"
 
 export const BasketList = (props) => {
-  const dispatch = useDispatch()
-  const [text, setText] = useState("")
 
-  const list = useSelector((state) => state.basketList.basket_list)
-
+ const dispatch = useDispatch()
+ const [text, setText] = useState("")
+ 
+ const list = useSelector((state) => state.basketList.basket_list)
   useEffect(() => {
     dispatch(basketActions.getListMiddleWares())
   }, [])
@@ -33,7 +33,7 @@ export const BasketList = (props) => {
         return
       }
     }
-
+    
     // if (!inputCheck.test(text)) {
     //   window.alert("1~6글자 한글만 입력가능")
     //   return
@@ -43,7 +43,7 @@ export const BasketList = (props) => {
     console.log(text)
     setText("")
     console.log(text)
-  }
+  };
 
   return (
     <>
@@ -117,6 +117,7 @@ export const BasketList = (props) => {
       </Grid>
 
       <Grid is_flex margin="40px 0px" justify_content="flex-end">
+
         <Input
           basket_input
           _onChange={addList}
@@ -124,7 +125,7 @@ export const BasketList = (props) => {
           placeholder="식재료를 입력해주세요"
         />
         <Button is_RectangleSubmitBtn size="50" _onClick={addBtn}>
-          추가
+              추가
         </Button>
       </Grid>
     </>
@@ -133,4 +134,5 @@ export const BasketList = (props) => {
 
 BasketList.defaultProps = {
   src: "https://t1.daumcdn.net/cfile/tistory/2533CF4F57B4E62307",
-}
+};
+

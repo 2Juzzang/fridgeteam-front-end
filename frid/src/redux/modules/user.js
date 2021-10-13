@@ -1,30 +1,29 @@
-import { createAction, handleActions } from "redux-actions";
-import {produce} from "immer"
-import axios from "axios"
-import {setCookie, deleteCookie, getCookie} from "../../shared/Cookie";
+import { createAction, handleActions } from 'redux-actions';
+import { produce } from 'immer';
+import axios from 'axios';
+import { setCookie, deleteCookie, getCookie } from '../../shared/Cookie';
 
-const LOG_IN = "LOG_IN"
-const LOG_OUT = "LOG_OUT"
-const LOGIN_CHECK ="LOGIN_CHECK"
-const GET_USER ="GET_USER"
-const SET_USER = "SET_USER"
+const LOG_IN = 'LOG_IN';
+const LOG_OUT = 'LOG_OUT';
+const LOGIN_CHECK = 'LOGIN_CHECK';
+const GET_USER = 'GET_USER';
+const SET_USER = 'SET_USER';
 
-const logIn = createAction(LOG_IN, (user) => ({user}));
-const logOut = createAction(LOG_OUT, (user) => ({user}))
-const loginCheck = createAction(LOGIN_CHECK, (cookie) => ({ cookie}));
-const getUser = createAction(GET_USER, (user) => ({user}));
+const logIn = createAction(LOG_IN, (user) => ({ user }));
+const logOut = createAction(LOG_OUT, (user) => ({ user }));
+const loginCheck = createAction(LOGIN_CHECK, (cookie) => ({ cookie }));
+const getUser = createAction(GET_USER, (user) => ({ user }));
 const setUser = createAction(SET_USER, (user) => ({ user }));
 const initialState = {
-  user : [],
+  user: [],
   is_login: false,
-}
+};
 
 const loginAPI = (username, password) => {
-  return function (dispatch, getState, {history}) 
-  {
+  return function (dispatch, getState, { history }) {
     axios({
       method: 'POST',
-      url: 'http://52.79.109.55/user/login',
+      url: 'http://13.125.231.18/user/login',
       data: {
         username: username,
         password: password,
@@ -55,8 +54,8 @@ const loginAPI = (username, password) => {
       .catch((err) => {
         console.log('loginAPI에서 오류 발생', err);
       });
-  }
-}
+  };
+};
 // const loginAPI = (username, password) => {
 //   return function (dispatch, getState, { history }) {
 //     axios({
@@ -103,7 +102,7 @@ const signupAPI = (username, password, email) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: 'POST',
-      url: 'http://52.79.109.55/user/signup',
+      url: 'http://13.125.231.18/user/signup',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json;charset=UTF-8',
@@ -145,7 +144,6 @@ const IDCheckAPI = (username) => {
       });
   };
 };
-
 
 export default handleActions(
   {
