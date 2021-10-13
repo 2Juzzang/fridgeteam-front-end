@@ -8,17 +8,17 @@ const SET_LIST = "SET_LIST"
 // const EDIT = "post/EDIT";
 
 const initialState = {
-  list: [],
+  list:  [],
 };
 
 //Action creators
-const setList = createAction(SET_LIST,(list) => {(list)})
+const setList = createAction(SET_LIST,(list) => ({list}))
 
 const listAPI = (ingredient) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: 'GET',
-      url: `http://52.79.109.55/api/recipe/${ingredient}`,
+      url: `http://localhost:3001/list`,
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json;charset=UTF-8',
@@ -27,7 +27,8 @@ const listAPI = (ingredient) => {
       data: {},
     })
       .then((res) => {
-        console.log(res.data);
+        dispatch(setList(res.data));
+     
       })
       .catch((err) => {
         console.log('listAPI에서 오류 발생', err);
@@ -38,12 +39,12 @@ const listAPI = (ingredient) => {
 // Reducer
 export default handleActions(
   {
-    [SET_LIST] : (state,action) => {
+    [SET_LIST] : (state,action) => 
       produce(state, (draft) => {
         draft.list = action.payload.list;
 
-      })
-    }
+      }),
+    
   },
   initialState
 )
