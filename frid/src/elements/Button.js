@@ -1,4 +1,6 @@
 import styled from "styled-components"
+import BackspaceIcon from "@mui/icons-material/Backspace"
+import ModeEditSharpIcon from "@mui/icons-material/ModeEditSharp"
 
 const Button = (props) => {
   const {
@@ -12,6 +14,7 @@ const Button = (props) => {
     is_RectangleCancleBtn,
     is_RectangleSubmitBtn,
     is_detBtn,
+    is_updateBtn,
   } = props
   const styles = {
     size: size,
@@ -47,11 +50,41 @@ const Button = (props) => {
   }
   if (is_detBtn) {
     return (
-      <DelBtn onClick={_onClick} {...styles}>
-        {text ? text : children}
-      </DelBtn>
+      <BackspaceIcon
+        onClick={_onClick}
+        sx={{
+          color: "#ff2020a6",
+          transform: "scaleX(-1)",
+          fontSize: "22px",
+          boxShadow: 5,
+          marginLeft: "10px",
+          "&:hover": {
+            color: "red",
+            cursor: "pointer",
+            transition: "0.3s ease-in",
+          },
+        }}
+      />
     )
   }
+  if (is_updateBtn) {
+    return (
+      <ModeEditSharpIcon
+        onClick={_onClick}
+        sx={{
+          fontSize: "22px",
+          boxShadow: 5,
+          color: "#ffffffad",
+          "&:hover": {
+            color: "WHITE",
+            cursor: "pointer",
+            transition: "0.3s ease-in",
+          },
+        }}
+      />
+    )
+  }
+
   return (
     <RectangleSubmitBtn {...styles}>
       {text ? text : children}
@@ -157,12 +190,6 @@ const CircleCancleBtn = styled.button`
   @media only screen and (max-width: 768px) {
     font-size: 12px;
   }
-`
-
-const DelBtn = styled.button`
-  background-color: black;
-  width: 15px;
-  height: 15px;
 `
 
 export default Button;
