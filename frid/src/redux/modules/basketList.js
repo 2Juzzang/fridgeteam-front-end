@@ -17,12 +17,12 @@ const initialState = {
 
 const instance = axios.create({
   // baseURL: "http://13.125.231.18",
-  baseURL: "http://localhost:3003",
+  baseURL: 'http://3.36.72.109',
   headers: {
-    "content-type": "application/json;charset=UTF-8",
-    accept: "application/json",
+    'content-type': 'application/json;charset=UTF-8',
+    accept: 'application/json',
   },
-})
+});
 
 const addListMiddlewares = (item) => {
   return function (dispatch, getState, { history }) {
@@ -34,19 +34,19 @@ const addListMiddlewares = (item) => {
 
     if (list.length < 20) {
       instance
-        .post("/list", { ingredient: item })
+        .post('/api/recipe', { ingredient: item })
         .then((res) => {
           dispatch(
             add_list({
               ingredient: item,
               id: res.data.id,
             })
-          )
-          history.replace("/")
+          );
+          history.replace('/');
         })
         .catch((err) => {
-          console.log(err, "postList 에러입니다.")
-        })
+          console.log(err, 'postList 에러입니다.');
+        });
     } else {
       window.alert("재료가 너무 많습니다.")
       return
@@ -57,27 +57,27 @@ const addListMiddlewares = (item) => {
 const getListMiddleWares = () => {
   return function (dispatch, getState, { history }) {
     instance
-      .get("/list")
+      .get('/api/recipe')
       .then((res) => {
-        const list = res.data
-        dispatch(load_list(list))
+        const list = res.data;
+        dispatch(load_list(list));
       })
       .catch((err) => {
-        console.log(err, "getList 에러 입니다.")
-      })
+        console.log(err, 'getList 에러 입니다.');
+      });
   }
 }
 
 const deleteListMiddleWares = (basket_id) => {
   return function (dispatch, getState, { history }) {
     instance
-      .delete(`/list/${basket_id}`)
+      .delete(`/api/recipe/${basket_id}`)
       .then((res) => {
-        dispatch(delete_list(basket_id))
+        dispatch(delete_list(basket_id));
       })
       .catch((err) => {
-        console.log(err, "삭제에러")
-      })
+        console.log(err, '삭제에러');
+      });
   }
 }
 export default handleActions(

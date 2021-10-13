@@ -10,7 +10,7 @@ const List = (props) => {
   const dispatch = useDispatch();
 
   const ingredient = props.match.params.id;
-
+   
   const title_list = [];
   const image_list = [];
   const total_list = [];
@@ -18,31 +18,31 @@ const List = (props) => {
     dispatch(listActions.listAPI(ingredient));
   }, []);
   const recipe_list = useSelector((state) => state.list.list);
-  let j,
-    k = 0;
+  // let j,
+  //   k = 0;
 
-  for (let i = 0; i < recipe_list.length; i++) {
-    if (i % 2 === 0) {
-      title_list[k] = recipe_list[i];
-      k++;
-    } else {
-      image_list[j] = recipe_list[i];
-      j++;
-    }
-  }
+  // for (let i = 0; i < recipe_list.length; i++) {
+  //   if (i % 2 === 0) {
+  //     title_list[k] = recipe_list[i];
+  //     k++;
+  //   } else {
+  //     image_list[j] = recipe_list[i];
+  //     j++;
+  //   }
+  // }
 
-  for (j = 0; j < title_list.length; j++) {
-    let Obj = {
-      title: '',
-      image: '',
-      tag: '',
-    };
-    Obj.title = title_list[j];
-    Obj.image = image_list[j];
-    total_list[j] = Obj;
-  }
-  console.log(title_list)
-  console.log(image_list);
+  // for (j = 0; j < title_list.length; j++) {
+  //   let Obj = {
+  //     title: '',
+  //     image: '',
+  //     tag: '',
+  //   };
+  //   Obj.title = title_list[j];
+  //   Obj.image = image_list[j];
+  //   total_list[j] = Obj;
+  // }
+  // console.log(title_list)
+  // console.log(image_list);
   return (
     <Grid is_flex flex_wrap='wrap' justify_content='center' width='100%'>
       {recipe_list.map((a, i) => {

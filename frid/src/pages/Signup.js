@@ -52,6 +52,7 @@ const Signup = (props) => {
           _onChange={(e) => {
             setUsername(e.target.value);
           }}
+          value={username}
         />
       </Grid>
       <Grid is_flex>
@@ -60,6 +61,7 @@ const Signup = (props) => {
           _onChange={(e) => {
             setPassword(e.target.value);
           }}
+          value={password}
         />
       </Grid>
       <Grid is_flex>
@@ -68,6 +70,7 @@ const Signup = (props) => {
           _onChange={(e) => {
             setIs_pwd(e.target.value);
           }}
+          value={is_pwd}
         />
       </Grid>
       <Grid is_flex>
@@ -76,6 +79,7 @@ const Signup = (props) => {
           _onChange={(e) => {
             setEmail(e.target.value);
           }}
+          value={email}
         />
       </Grid>
       <Grid margin='0px 0px 0px 490px'>

@@ -18,7 +18,7 @@ const listAPI = (ingredient) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: 'GET',
-      url: `http://localhost:3001/list`,
+      url: `http://localhost:3002/list`,
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json;charset=UTF-8',

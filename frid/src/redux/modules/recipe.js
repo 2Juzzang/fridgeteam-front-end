@@ -1,54 +1,54 @@
+import { createAction, handleActions } from 'redux-actions';
+import { produce } from 'immer';
+import axios from 'axios';
 // Actions
-const CREATE = "list/CREATE";
-const LOAD = "list/LOAD";
+const SET_RECIPE = 'SET_RECIPE';
+
 // const DELETE = "post/DELETE";
 // const EDIT = "post/EDIT";
 
 const initialState = {
-  list: [
-    {
-      name: "문어",
-      img: "https://s3-ap-northeast-1.amazonaws.com/dcreviewsresized/20200304045854_photo1_92920958b8e9.jpg",
-    },
-    {
-      name: "치킨",
-      img: "https://img.hankyung.com/photo/201912/99.11408081.1.jpg",
-    },
-  ],
+  recipe: [],
 };
 
 //Action creators
-export function loadList() {
-  const list = initialState.list;
-  return { type: LOAD, list };
-}
+const setRecipe = createAction(SET_RECIPE, (recipe) => ({ recipe }));
 
-export function createList(list) {
-  return { type: CREATE, list };
-}
-
-// export function deletePost(post) {
-//     return { type: DELETE, post};
-
-// }
-
-// export function editPost(post) {
-//     return { type: EDIT, post};
-// }
+const recipeAPI = (ingredient) => {
+  return function (dispatch, getState, { history }) {
+    axios({
+      method: 'GET',
+      url: `http://localhost:3001/detail`,
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json;charset=UTF-8',
+        'Access-Control-Allow-Origin': '*',
+      },
+      data: {},
+    })
+      .then((res) => {
+        dispatch(setRecipe(res.data));
+      })
+      .catch((err) => {
+        console.log('recipeAPI에서 오류 발생', err);
+      });
+  };
+};
 
 // Reducer
-export default function reducer(state = initialState, action = {}) {
-  switch (action.type) {
-    case "list/CREATE": {
-      // const new_post_list = [...state.post, action.post];
-      return { list: [...state.list, action.list] };
-    }
-    case "list/LOAD": {
-      console.log("액션", action);
-      return { list: action.list };
-      // 이 과정을 거치면 initialState의 post( 빈 배열 )에 { post : action.post} 가 담기고 이걸 map을 통해 뷰에 나타냄
-    }
-    default:
-      return state;
-  }
-}
+export default handleActions(
+  {
+    [SET_RECIPE]: (state, action) =>
+      produce(state, (draft) => {
+        draft.recipe = action.payload.recipe;
+      }),
+    
+  },
+  initialState
+);
+
+const actionCreators = {
+  setRecipe,
+  recipeAPI,
+};
+export { actionCreators };
