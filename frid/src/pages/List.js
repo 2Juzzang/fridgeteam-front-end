@@ -44,7 +44,7 @@ const List = (props) => {
   console.log(title_list)
   console.log(image_list);
   return (
-    <Grid is_flex flex_wrap='wrap' justify_content='start' width='100%'>
+    <Grid is_flex flex_wrap='wrap' justify_content='center' width='100%'>
       {recipe_list.map((a, i) => {
         if(i%2==0)
         return (
@@ -56,29 +56,23 @@ const List = (props) => {
               history.push(`/recipe/${a}`);
             }}
             margin='0 auto 0 0'
-          >
-           
+         
+          > {
+            recipe_list.map((a,k) =>{
+              if(k==i+1){
+                 return <Image src={a} size='470'></Image>;
+              }
+             
+            })
+          }
+            
             <Text padding='15px 0px' size='20px'>
               {a}
             </Text>
           </Grid>
         );
-        else
-         return (
-           <Grid
-             // 임시 width 5%
-            
-             key={i}
-             _onClick={() => {
-               history.push(`/recipe/${a}`);
-             }}
-             margin='0 auto 0 0'
-             is_flex
-           >
-             <Image src={a} size='470'></Image>
-             
-           </Grid>
-         );
+       
+         
       })}
     </Grid>
   );
