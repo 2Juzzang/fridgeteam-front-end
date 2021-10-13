@@ -10,7 +10,6 @@ const List = (props) => {
   let history = useHistory();
   const dispatch = useDispatch();
   const list = useSelector((state) => state.list.list);
-  console.log("확인", list);
   React.useEffect(() => {
     dispatch(loadList());
   }, []);
@@ -18,13 +17,16 @@ const List = (props) => {
   return (
     <Grid is_flex flex_wrap="wrap" justify_content="start" width="100%">
       {list.map((a, i) => {
+        console.log("에이 네임", a.name);
         return (
           <Grid
             // 임시 width 5%
             width="5%"
             key={i}
             _onClick={() => {
-              history.push(`/detail/${i}`);
+              const detail_index = props.match.params;
+              console.log("디테일인덱스", a.name);
+              history.push(`/recipe/${a.name}`);
             }}
             margin="0 auto 0 0"
           >

@@ -44,7 +44,6 @@ export default function reducer(state = initialState, action = {}) {
       return { list: [...state.list, action.list] };
     }
     case "list/LOAD": {
-      console.log("액션", action);
       return { list: action.list };
       // 이 과정을 거치면 initialState의 post( 빈 배열 )에 { post : action.post} 가 담기고 이걸 map을 통해 뷰에 나타냄
     }
