@@ -14,53 +14,54 @@ const initialState = {
 };
 
 const instance = axios.create({
-  baseURL: "http://localhost:3003/",
+  baseURL: "http://52.79.109.55/",
   headers: {
     "content-type": "application/json;charset=UTF-8",
     accept: "application/json",
   },
-});
+})
 
 const addListMiddlewares = (item) => {
   return function (dispatch, getState, { history }) {
-    const list = getState().basketList.basket_list;
+    const list = getState().basketList.basket_list
+    console.log(list)
     if (!item) {
-      return;
+      return
     }
     if (list.length < 20) {
       instance
-        .post("list", { name: item })
+        .post("/api/recipe/", { ingredient: item })
         .then((res) => {
           dispatch(
             add_list({
-              name: item,
+              ingredient: item,
               id: res.data.id,
             })
-          );
+          )
         })
         .catch((err) => {
-          console.log(err, "postList 에러입니다.");
-        });
+          console.log(err, "postList 에러입니다.")
+        })
     } else {
-      window.alert("재료가 너무 많습니다.");
-      return;
+      window.alert("재료가 너무 많습니다.")
+      return
     }
-  };
-};
+  }
+}
 
 const getListMiddleWares = () => {
   return function (dispatch, getState, { history }) {
     instance
-      .get("list")
+      .get("api/recipe/")
       .then((res) => {
-        const list = res.data;
-        dispatch(load_list(list));
+        const list = res.data
+        dispatch(load_list(list))
       })
       .catch((err) => {
-        console.log(err, "getList 에러 입니다.");
-      });
-  };
-};
+        console.log(err, "getList 에러 입니다.")
+      })
+  }
+}
 
 export default handleActions(
   {

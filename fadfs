@@ -1,0 +1,167 @@
+[33mcommit f9fbad953cf6709f0a40bad4b694b632a60326a8[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: jaeiljoo <sgsgself@naver.com>
+Date:   Tue Oct 12 23:41:55 2021 +0900
+
+    [update]메인css수정
+
+[33mcommit 563f6cdea756e8b4eb48d3d9383e25779a10b5a0[m
+Author: jaeiljoo <sgsgself@naver.com>
+Date:   Tue Oct 12 23:40:28 2021 +0900
+
+    [update]메인css수정
+
+[33mcommit 40092015fa37f6b35f7a96c25b70729346b91f34[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: JiHoon <skyy630@naver.com>
+Date:   Tue Oct 12 21:47:41 2021 +0900
+
+    [edit]10.12 병합완료
+
+[33mcommit 04cbd2f12857aa0819997c09c65f4b82a5524d25[m
+Merge: 241d968 0e4f1c7
+Author: eternalclash <suchasucha@naver.com>
+Date:   Tue Oct 12 21:02:56 2021 +0900
+
+    (update)로그인,회원가입과 메인 화면 합침
+
+[33mcommit 241d968fd04de09ccd56483fae04955500e38371[m
+Author: eternalclash <suchasucha@naver.com>
+Date:   Tue Oct 12 20:39:14 2021 +0900
+
+    (update) 로그인,회원가입 수정
+
+[33mcommit 0e4f1c7748d7384c95d15a0356fae61df060f707[m
+Merge: 6386920 62d34e3
+Author: jaeil.joo <sgsgself@naver.com>
+Date:   Tue Oct 12 20:33:52 2021 +0900
+
+    Merge pull request #5 from 2Juzzang/jaeil2
+    
+    [add] list페이지로연결
+
+[33mcommit 62d34e314fbd4c5cb298e2b878480dcb24cdf7c9[m[33m ([m[1;31morigin/jaeil2[m[33m, [m[1;32mjaeil2[m[33m)[m
+Author: jaeiljoo <sgsgself@naver.com>
+Date:   Tue Oct 12 20:32:57 2021 +0900
+
+    [add] list페이지로연결
+
+[33mcommit 6386920bd63c437e946dfb3acd855e7fa5b9ca64[m
+Merge: 6e9af91 4bdf819
+Author: jaeil.joo <sgsgself@naver.com>
+Date:   Tue Oct 12 17:21:06 2021 +0900
+
+    Merge pull request #4 from 2Juzzang/jaeil2
+    
+    [add] 메인 post, get 추가
+
+[33mcommit 4bdf8197e19b1225f55e45641393714267deae9b[m
+Author: jaeiljoo <sgsgself@naver.com>
+Date:   Tue Oct 12 17:17:55 2021 +0900
+
+    [add] 메인 post, get 추가
+
+[33mcommit 6e9af9112d7af33a70fe8957388df81ae56edf13[m
+Author: JiHoon <skyy630@naver.com>
+Date:   Tue Oct 12 03:00:51 2021 +0900
+
+    [fix]목록 margin 수정
+
+[33mcommit 9e09f8865e05892127f9f1f79872032bf9b788c8[m
+Author: eternalclash <suchasucha@naver.com>
+Date:   Tue Oct 12 01:07:05 2021 +0900
+
+    (fix)1차 뷰 완성
+
+[33mcommit afc17caf20bd85819328226fac2f24be605ed9dc[m
+Merge: f21257c c29f498
+Author: eternalclash <77526745+eternalclash@users.noreply.github.com>
+Date:   Tue Oct 12 00:55:16 2021 +0900
+
+    Merge pull request #3 from 2Juzzang/soochang
+    
+    (add)로그인 회원가입 구현
+
+[33mcommit c29f49829b18505a0b278e6b871ba37457d5cfa4[m[33m ([m[1;31morigin/soochang[m[33m)[m
+Merge: e62c926 f21257c
+Author: eternalclash <77526745+eternalclash@users.noreply.github.com>
+Date:   Tue Oct 12 00:55:05 2021 +0900
+
+    Merge branch 'main' into soochang
+
+[33mcommit e62c9268adf6b7998c6ad3263911e40d27dcce86[m
+Author: eternalclash <suchasucha@naver.com>
+Date:   Tue Oct 12 00:41:33 2021 +0900
+
+    (add)로그인 회원가입 구현
+
+[33mcommit f21257cbdf70f37582db5ac2093fba7da3c1ae78[m
+Merge: 31ee74e 64eed69
+Author: Jihoon Lee <79308918+2Juzzang@users.noreply.github.com>
+Date:   Tue Oct 12 00:34:05 2021 +0900
+
+    Merge pull request #2 from 2Juzzang/hoon
+    
+    [add]리스트목록, 디테일페이지 뷰 구현
+
+[33mcommit 64eed69e6511ca011570acb609fe6b76a9f4a1a5[m[33m ([m[1;31morigin/hoon[m[33m)[m
+Merge: 768dd0e 31ee74e
+Author: Jihoon Lee <79308918+2Juzzang@users.noreply.github.com>
+Date:   Tue Oct 12 00:33:54 2021 +0900
+
+    Merge branch 'main' into hoon
+
+[33mcommit 768dd0ebec3f5b4037181e0dacb80da20fd53ace[m
+Author: JiHoon <skyy630@naver.com>
+Date:   Tue Oct 12 00:30:41 2021 +0900
+
+    [add]리스트목록, 디테일페이지 뷰 구현
+
+[33mcommit 31ee74e4267a9141aa888e5da35b6c97f053e978[m
+Merge: b1d6541 391c5cc
+Author: jaeil.joo <sgsgself@naver.com>
+Date:   Mon Oct 11 23:38:37 2021 +0900
+
+    Merge pull request #1 from 2Juzzang/jaeil
+    
+    Jaeil
+
+[33mcommit 391c5cc98d7e7d9b8a3edfc70e7bf4f4e24b2461[m[33m ([m[1;31morigin/jaeil[m[33m)[m
+Author: jaeiljoo <sgsgself@naver.com>
+Date:   Mon Oct 11 23:37:54 2021 +0900
+
+    [add]메인 뷰
+
+[33mcommit b731d713def6f2f1353ca49088cf625a2054170e[m
+Author: jaeiljoo <sgsgself@naver.com>
+Date:   Mon Oct 11 20:24:33 2021 +0900
+
+    test
+
+[33mcommit b1d6541a20e516360cd7fcba74da0c3f05574631[m
+Author: jaeiljoo <sgsgself@naver.com>
+Date:   Mon Oct 11 20:24:33 2021 +0900
+
+    dd
+
+[33mcommit 8070e32f6bbc910e5d99bb7ab518f00d758cf337[m
+Author: eternalclash <suchasucha@naver.com>
+Date:   Mon Oct 11 19:15:35 2021 +0900
+
+    (add)최소단위 컴포넌트
+
+[33mcommit ff18e52affc600911b09b971bf57b06a713434eb[m
+Author: jaeiljoo <sgsgself@naver.com>
+Date:   Mon Oct 11 14:57:38 2021 +0900
+
+    아아아
+
+[33mcommit 588cad4f36dda8f0b3dcdb88f3c906433e32e56b[m
+Author: eternalclash <suchasucha@naver.com>
+Date:   Mon Oct 11 14:55:07 2021 +0900
+
+    연습파일
+
+[33mcommit 1956eab141ff9505850384b612282d9b13414247[m
+Author: Jihoon Lee <79308918+2Juzzang@users.noreply.github.com>
+Date:   Mon Oct 11 14:39:55 2021 +0900
+
+    Initial commit
