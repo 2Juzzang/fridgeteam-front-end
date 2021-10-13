@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 
 export const Blank = () => {
-  return <Black>재료를 입력해주세요</Black>
+  return <Black>냉장고를 채워주세요</Black>
 }
 
 const Black = styled.div`

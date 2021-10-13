@@ -1,56 +1,62 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import Button from '../elements/Button';
-import Grid from '../elements/Grid';
-import Image from '../elements/Image';
-import Input from '../elements/Input';
-import Text from '../elements/Text';
-import { history } from '../redux/configStore';
-import { actionsCreators as basketActions } from '../redux/modules/basketList';
-import { inputCheck } from '../shared/inputCheck';
-import { Blank } from './Blank';
+import styled from "styled-components"
+import React, { useEffect, useRef, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import Button from "../elements/Button"
+import Grid from "../elements/Grid"
+import Image from "../elements/Image"
+import Input from "../elements/Input"
+import Text from "../elements/Text"
+import { history } from "../redux/configStore"
+import { actionsCreators as basketActions } from "../redux/modules/basketList"
+import { inputCheck } from "../shared/inputCheck"
+import { Blank } from "./Blank"
 
 export const BasketList = (props) => {
-  const dispatch = useDispatch();
-  const [item, setItem] = useState('');
 
+ const dispatch = useDispatch()
+ const [text, setText] = useState("")
+ 
+ const list = useSelector((state) => state.basketList.basket_list)
   useEffect(() => {
-    dispatch(basketActions.getListMiddleWares());
-  }, []);
-
-  const list = useSelector((state) => state.basketList.basket_list);
+    dispatch(basketActions.getListMiddleWares())
+  }, [])
 
   const addList = (e) => {
-    setItem(e.target.value);
-  };
+    setText(e.target.value)
+    console.log(e.target.value)
+  }
 
-  const addBtn = () => {
-    for (let i = 0; i < list.length; i++){
-      if (item === list[i].name) {
+  const addBtn = (e) => {
+    for (let i = 0; i < list.length; i++) {
+      if (text === list[i].ingredient) {
         window.alert("이미 있는 재료입니다.")
         return
       }
     }
-    if (inputCheck.test(item)) {
-      dispatch(basketActions.addListMiddlewares(item));
-    } else {
-      window.alert('1~6글자 한글만 입력가능');
-      return;
-    }
+    
+    // if (!inputCheck.test(text)) {
+    //   window.alert("1~6글자 한글만 입력가능")
+    //   return
+    // }
+
+    dispatch(basketActions.addListMiddlewares(text))
+    console.log(text)
+    setText("")
+    console.log(text)
   };
 
   return (
     <>
-      <Grid is_flex justify_content='space-between'>
+      <Grid is_flex justify_content="space-between">
         <Grid>
           <Image />
         </Grid>
         <Button
           is_RectangleSubmitBtn
-          margin='10px 0px'
-          size='80'
+          margin="10px 0px"
+          size="80"
           _onClick={() => {
-            history.push('/login');
+            history.push("/login")
           }}
         >
           로그인
@@ -59,44 +65,74 @@ export const BasketList = (props) => {
       <Grid>
         <Image is_basketList src={props.src} is_bg />
 
-        <Grid is_grid width='80%'>
-          {list.length ?
-            list.map((e,) => {
+        <Grid is_grid width="80%">
+          {list.length > 0 ? (
+            list.map((e) => {
+              // key 값은 가장 최상위
               return (
-                <>
-                  <Grid
+                <Grid
+                  basket
+                  width="auto"
+                  padding="0 20px"
+                  bg="#383838"
+                  key={e.id}
+                >
+                  <Grid margin="0px 3px 20px 3px" width="auto" is_flex>
+                    <Button
+                      is_updateBtn
+                      _onClick={() => {
+                        console.log("수정눌렀어요")
+                      }}
+                    ></Button>
+                    <Button
+                      is_detBtn
+                      _onClick={() => {
+                        if (window.confirm("삭제하시겠습니까?")) {
+                          dispatch(basketActions.deleteListMiddleWares(e.id))
+                        } else {
+                          window.alert("취소하셨습니다.")
+                          return
+                        }
+                      }}
+                      // ref={btnValue}
+                    ></Button>
+                  </Grid>
+                  <Text
+                    color="#ffffffd9"
+                    size="24px"
                     basket
-                    width="auto"
-                    padding="0 20px"
-                    bg="#000"
-                    key={e.id}
                     _onClick={() => {
-                      console.log("재료선택")
-                      history.push(`/list/${e.name}`)
+                      history.push(`/list/${e.ingredient}`)
                     }}
                   >
-                    <Text color="#efefef" size="24px">
-                      {e.name}
-                    </Text>
-                    {/* <Button is_detBtn></Button> */}
-                  </Grid>
-                </>
+                    {e.ingredient}
+                  </Text>
+                </Grid>
               )
-            }) :
-            <Blank></Blank>}
+            })
+          ) : (
+            <Blank></Blank>
+          )}
         </Grid>
       </Grid>
 
-      <Grid is_flex margin='40px 0px' justify_content='flex-end'>
-        <Input basket_input _onChange={addList} />
-        <Button is_RectangleSubmitBtn size='50' _onClick={addBtn}>
-          추가
+      <Grid is_flex margin="40px 0px" justify_content="flex-end">
+
+        <Input
+          basket_input
+          _onChange={addList}
+          value={text}
+          placeholder="식재료를 입력해주세요"
+        />
+        <Button is_RectangleSubmitBtn size="50" _onClick={addBtn}>
+              추가
         </Button>
       </Grid>
     </>
-  );
-};
+  )
+}
 
 BasketList.defaultProps = {
-  src: 'https://t1.daumcdn.net/cfile/tistory/2533CF4F57B4E62307',
+  src: "https://t1.daumcdn.net/cfile/tistory/2533CF4F57B4E62307",
 };
+

@@ -5,12 +5,14 @@ import { connectRouter } from "connected-react-router";
 import basketList from "./modules/basketList";
 import User from "./modules/user";
 import List from "./modules/list";
+import Recipe from "./modules/recipe";
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
   list: List,
   user: User,
   basketList,
+  recipe:Recipe,
   router: connectRouter(history),
 });
 

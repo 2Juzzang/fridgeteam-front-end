@@ -4,83 +4,114 @@ import axios from "axios";
 
 const ADD_LIST = "ADD_LIST";
 const LOAD_LIST = "LOAD_LIST";
+const DELETE_LIST = "DELETE_LIST"
 
-const add_list = createAction(ADD_LIST, (item) => ({ item }));
-const load_list = createAction(LOAD_LIST, (basket_list) => ({ basket_list }));
+const add_list = createAction(ADD_LIST, (item) => ({ item }))
+const load_list = createAction(LOAD_LIST, (basket_list) => ({ basket_list }))
+const delete_list = createAction(DELETE_LIST, (basket_id) => ({ basket_id }))
 
 const initialState = {
   basket_list: [],
   is_login: false,
-};
+}
 
 const instance = axios.create({
-  baseURL: "http://localhost:3003/",
+  // baseURL: "http://13.125.231.18",
+  baseURL: 'http://3.36.72.109',
   headers: {
-    "content-type": "application/json;charset=UTF-8",
-    accept: "application/json",
+    'content-type': 'application/json;charset=UTF-8',
+    accept: 'application/json',
   },
 });
 
 const addListMiddlewares = (item) => {
   return function (dispatch, getState, { history }) {
-    const list = getState().basketList.basket_list;
+    const list = getState().basketList.basket_list
+
     if (!item) {
-      return;
+      return
     }
+
     if (list.length < 20) {
       instance
-        .post("list", { name: item })
+        .post('/api/recipe', { ingredient: item })
         .then((res) => {
           dispatch(
             add_list({
-              name: item,
+              ingredient: item,
               id: res.data.id,
             })
           );
+          history.replace('/');
         })
         .catch((err) => {
-          console.log(err, "postList 에러입니다.");
+          console.log(err, 'postList 에러입니다.');
         });
     } else {
-      window.alert("재료가 너무 많습니다.");
-      return;
+      window.alert("재료가 너무 많습니다.")
+      return
     }
-  };
-};
+  }
+}
 
 const getListMiddleWares = () => {
   return function (dispatch, getState, { history }) {
     instance
-      .get("list")
+      .get('/api/recipe')
       .then((res) => {
         const list = res.data;
         dispatch(load_list(list));
       })
       .catch((err) => {
-        console.log(err, "getList 에러 입니다.");
+        console.log(err, 'getList 에러 입니다.');
       });
-  };
-};
+  }
+}
 
+const deleteListMiddleWares = (basket_id) => {
+  return function (dispatch, getState, { history }) {
+    instance
+      .delete(`/api/recipe/${basket_id}`)
+      .then((res) => {
+        dispatch(delete_list(basket_id));
+      })
+      .catch((err) => {
+        console.log(err, '삭제에러');
+      });
+  }
+}
 export default handleActions(
   {
     [ADD_LIST]: (state, action) =>
       produce(state, (draft) => {
-        draft.basket_list.push(action.payload.item);
+        draft.basket_list.push(action.payload.item)
       }),
     [LOAD_LIST]: (state, action) =>
       produce(state, (draft) => {
-        draft.basket_list = action.payload.basket_list;
+        draft.basket_list = action.payload.basket_list
+      }),
+    [DELETE_LIST]: (state, action) =>
+      produce(state, (draft) => {
+        let idx = draft.basket_list.findIndex((p) => {
+          return p.id === action.payload.basket_id
+        })
+
+        if (idx !== -1) {
+          // 배열에서 idx 위치의 요소 1개를 지웁니다.
+          draft.basket_list.splice(idx, 1)
+        }
       }),
   },
   initialState
-);
+)
 
 const actionsCreators = {
-  add_list,
-  load_list,
+  // add_list,
+  // load_list,
   addListMiddlewares,
   getListMiddleWares,
-};
+  deleteListMiddleWares,
+  delete_list,
+}
 
 export { actionsCreators };

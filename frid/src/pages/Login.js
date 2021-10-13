@@ -42,6 +42,7 @@ const Login = (props) => {
           _onChange={(e) => {
             setUsername(e.target.value);
           }}
+          value={username}
         />
       </Grid>
       <Grid is_flex>
@@ -50,6 +51,7 @@ const Login = (props) => {
           _onChange={(e) => {
             setPassword(e.target.value);
           }}
+          value={password}
         />
       </Grid>
 

@@ -2,23 +2,23 @@ import { createAction, handleActions } from 'redux-actions';
 import { produce } from 'immer';
 import axios from 'axios';
 // Actions
-const SET_LIST = "SET_LIST"
+const SET_RECIPE = 'SET_RECIPE';
 
 // const DELETE = "post/DELETE";
 // const EDIT = "post/EDIT";
 
 const initialState = {
-  list:  [],
+  recipe: [],
 };
 
 //Action creators
-const setList = createAction(SET_LIST,(list) => ({list}))
+const setRecipe = createAction(SET_RECIPE, (recipe) => ({ recipe }));
 
-const listAPI = (ingredient) => {
+const recipeAPI = (ingredient) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: 'GET',
-      url: `http://localhost:3002/list`,
+      url: `http://localhost:3001/detail`,
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json;charset=UTF-8',
@@ -27,11 +27,10 @@ const listAPI = (ingredient) => {
       data: {},
     })
       .then((res) => {
-        dispatch(setList(res.data));
-     
+        dispatch(setRecipe(res.data));
       })
       .catch((err) => {
-        console.log('listAPI에서 오류 발생', err);
+        console.log('recipeAPI에서 오류 발생', err);
       });
   };
 };
@@ -39,18 +38,17 @@ const listAPI = (ingredient) => {
 // Reducer
 export default handleActions(
   {
-    [SET_LIST] : (state,action) => 
+    [SET_RECIPE]: (state, action) =>
       produce(state, (draft) => {
-        draft.list = action.payload.list;
-
+        draft.recipe = action.payload.recipe;
       }),
     
   },
   initialState
-)
+);
 
 const actionCreators = {
-  setList,
-  listAPI,
-}
+  setRecipe,
+  recipeAPI,
+};
 export { actionCreators };
