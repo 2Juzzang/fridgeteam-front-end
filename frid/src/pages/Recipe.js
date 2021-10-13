@@ -9,9 +9,7 @@ const Recipe = (props) => {
   const detail_index = props.match.params;
   const dispatch = useDispatch();
   console.log("디테일 인덱스", detail_index, "리스트 디테일", list_detail);
-  React.useEffect(() => {
-    dispatch(loadList());
-  }, []);
+  
   return (
     <>
       <Image src={list_detail[1].img} size="1000"></Image>

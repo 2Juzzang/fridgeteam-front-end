@@ -1,53 +1,55 @@
+import { createAction, handleActions } from 'redux-actions';
+import { produce } from 'immer';
+import axios from 'axios';
 // Actions
-const CREATE = "list/CREATE";
-const LOAD = "list/LOAD";
+const SET_LIST = "SET_LIST"
+
 // const DELETE = "post/DELETE";
 // const EDIT = "post/EDIT";
 
 const initialState = {
-  list: [
-    {
-      name: "문어",
-      img: "https://s3-ap-northeast-1.amazonaws.com/dcreviewsresized/20200304045854_photo1_92920958b8e9.jpg",
-    },
-    {
-      name: "치킨",
-      img: "https://img.hankyung.com/photo/201912/99.11408081.1.jpg",
-    },
-  ],
+  list: [],
 };
 
 //Action creators
-export function loadList() {
-  const list = initialState.list;
-  return { type: LOAD, list };
-}
+const setList = createAction(SET_LIST,(list) => {(list)})
 
-export function createList(list) {
-  return { type: CREATE, list };
-}
-
-// export function deletePost(post) {
-//     return { type: DELETE, post};
-
-// }
-
-// export function editPost(post) {
-//     return { type: EDIT, post};
-// }
+const listAPI = (ingredient) => {
+  return function (dispatch, getState, { history }) {
+    axios({
+      method: 'GET',
+      url: `http://52.79.109.55/api/recipe/${ingredient}`,
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json;charset=UTF-8',
+        'Access-Control-Allow-Origin': '*',
+      },
+      data: {},
+    })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log('listAPI에서 오류 발생', err);
+      });
+  };
+};
 
 // Reducer
-export default function reducer(state = initialState, action = {}) {
-  switch (action.type) {
-    case "list/CREATE": {
-      // const new_post_list = [...state.post, action.post];
-      return { list: [...state.list, action.list] };
+export default handleActions(
+  {
+    [SET_LIST] : (state,action) => {
+      produce(state, (draft) => {
+        draft.list = action.payload.list;
+
+      })
     }
-    case "list/LOAD": {
-      return { list: action.list };
-      // 이 과정을 거치면 initialState의 post( 빈 배열 )에 { post : action.post} 가 담기고 이걸 map을 통해 뷰에 나타냄
-    }
-    default:
-      return state;
-  }
+  },
+  initialState
+)
+
+const actionCreators = {
+  setList,
+  listAPI,
 }
+export { actionCreators };
