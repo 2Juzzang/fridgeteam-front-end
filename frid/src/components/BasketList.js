@@ -13,8 +13,7 @@ import { Blank } from './Blank';
 export const BasketList = (props) => {
   const dispatch = useDispatch();
   const [item, setItem] = useState('');
-
-  useEffect(() => {
+ useEffect(() => {
     dispatch(basketActions.getListMiddleWares());
   }, []);
 
@@ -34,23 +33,23 @@ export const BasketList = (props) => {
     if (inputCheck.test(item)) {
       dispatch(basketActions.addListMiddlewares(item));
     } else {
-      window.alert('1~6글자 한글만 입력가능');
+      window.alert("1~6글자 한글만 입력가능");
       return;
     }
   };
 
   return (
     <>
-      <Grid is_flex justify_content='space-between'>
+      <Grid is_flex justify_content="space-between">
         <Grid>
           <Image />
         </Grid>
         <Button
           is_RectangleSubmitBtn
-          margin='10px 0px'
-          size='80'
+          margin="10px 0px"
+          size="80"
           _onClick={() => {
-            history.push('/login');
+            history.push("/login");
           }}
         >
           로그인
@@ -87,10 +86,12 @@ export const BasketList = (props) => {
         </Grid>
       </Grid>
 
-      <Grid is_flex margin='40px 0px' justify_content='flex-end'>
+      <Grid is_flex margin="40px 0px" justify_content="flex-end">
         <Input basket_input _onChange={addList} />
+
         <Button is_RectangleSubmitBtn size='50' _onClick={addBtn}>
           추가
+
         </Button>
       </Grid>
     </>
@@ -98,5 +99,5 @@ export const BasketList = (props) => {
 };
 
 BasketList.defaultProps = {
-  src: 'https://t1.daumcdn.net/cfile/tistory/2533CF4F57B4E62307',
+  src: "https://t1.daumcdn.net/cfile/tistory/2533CF4F57B4E62307",
 };

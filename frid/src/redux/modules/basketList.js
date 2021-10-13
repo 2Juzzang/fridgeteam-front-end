@@ -71,6 +71,7 @@ export default handleActions(
       }),
     [LOAD_LIST]: (state, action) =>
       produce(state, (draft) => {
+        console.log("안녕하세요", state, draft);
         draft.basket_list = action.payload.basket_list;
       }),
   },
