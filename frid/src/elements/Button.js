@@ -11,6 +11,7 @@ const Button = (props) => {
     is_CircleSubmitBtn,
     is_RectangleCancleBtn,
     is_RectangleSubmitBtn,
+    is_detBtn,
   } = props
   const styles = {
     size: size,
@@ -44,13 +45,18 @@ const Button = (props) => {
       </RectangleSubmitBtn>
     )
   }
+  if (is_detBtn) {
+    return (
+      <DelBtn onClick={_onClick} {...styles}>
+        {text ? text : children}
+      </DelBtn>
+    )
+  }
   return (
-    
-      <RectangleSubmitBtn {...styles} >
+    <RectangleSubmitBtn {...styles}>
       {text ? text : children}
-      </RectangleSubmitBtn>
-    
-  );
+    </RectangleSubmitBtn>
+  )
 }
 
 Button.defaultProps = {
@@ -62,6 +68,7 @@ Button.defaultProps = {
   is_CircleCancleBtn: false,
   is_RectangleSubmitBtn: false,
   is_RectangleCancleBtn: false,
+  is_detBtn: false,
   text: false,
   children: null,
 }
@@ -101,6 +108,12 @@ const RectangleSubmitBtn = styled.button`
   margin: ${(props) => props.margin};
   &:hover {
     cursor: pointer;
+    transition: 1s ease-in-out;
+  }
+  @media only screen and (max-width: 768px) {
+    font-size: 12px;
+    width: 60px;
+    height: 60px;
   }
 `
 const CircleSubmitBtn = styled.button`
@@ -120,6 +133,9 @@ const CircleSubmitBtn = styled.button`
   &:hover {
     cursor: pointer;
   }
+  @media only screen and (max-width: 768px) {
+    font-size: 12px;
+  }
 `
 const CircleCancleBtn = styled.button`
   --size: ${(props) => props.size}px;
@@ -138,5 +154,15 @@ const CircleCancleBtn = styled.button`
   &:hover {
     cursor: pointer;
   }
+  @media only screen and (max-width: 768px) {
+    font-size: 12px;
+  }
 `
+
+const DelBtn = styled.button`
+  background-color: black;
+  width: 15px;
+  height: 15px;
+`
+
 export default Button;

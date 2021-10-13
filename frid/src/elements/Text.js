@@ -16,10 +16,7 @@ Text.defaultProps = {
   size: "14px",
   margin: false,
   padding: false,
-
-};
-
-
+}
 
 const P = styled.p`
   color: ${(props) => props.color};
@@ -27,7 +24,10 @@ const P = styled.p`
   font-weight: ${(props) => (props.bold ? "600" : "400")};
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
   ${(props) => (props.padding ? `padding: ${props.padding};` : "")}
-`;
+   @media only screen and (max-width: 768px) {
+    font-size: 10px;
+  }
+`
 
 
   

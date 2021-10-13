@@ -68,11 +68,13 @@ const GridBox = styled.div`
   flex-wrap: ${(props) => (props.flex_wrap ? `${props.flex_wrap};` : "")};
   ${(props) =>
     props.is_grid
-      ? "display: grid; grid-template-columns: repeat(4,1fr); grid-gap: 80px; position: absolute; top:50%; left:50%; transform:translate(-50%, -50%); padding-right: 50px; padding-left: 50px;"
+      ? "display: grid; grid-template-columns: repeat(4,1fr); grid-gap: 1rem; position: absolute; top:50%; left:50%; transform:translate(-50%, -50%)"
       : ""}
   ${(props) =>
     props.basket
       ? "padding:10px 20px; border-radius:10px; &:hover{background-color:#ed2b2bd4; cursor: pointer; transition: 0.3s ease-in-out;}"
       : ""}
-`;
-export default Grid;
+`
+
+export default Grid
+

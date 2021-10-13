@@ -1,20 +1,19 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Button from "../elements/Button";
-import Grid from "../elements/Grid";
-import Image from "../elements/Image";
-import Input from "../elements/Input";
-import Text from "../elements/Text";
-import { history } from "../redux/configStore";
-import { actionsCreators as basketActions } from "../redux/modules/basketList";
-import { inputCheck } from "../shared/inputCheck";
+import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Button from '../elements/Button';
+import Grid from '../elements/Grid';
+import Image from '../elements/Image';
+import Input from '../elements/Input';
+import Text from '../elements/Text';
+import { history } from '../redux/configStore';
+import { actionsCreators as basketActions } from '../redux/modules/basketList';
+import { inputCheck } from '../shared/inputCheck';
+import { Blank } from './Blank';
 
 export const BasketList = (props) => {
   const dispatch = useDispatch();
-  const name = useSelector((state) => state.basketList.basket_list);
-  const [item, setItem] = useState("");
-
-  useEffect(() => {
+  const [item, setItem] = useState('');
+ useEffect(() => {
     dispatch(basketActions.getListMiddleWares());
   }, []);
 
@@ -25,6 +24,12 @@ export const BasketList = (props) => {
   };
 
   const addBtn = () => {
+    for (let i = 0; i < list.length; i++){
+      if (item === list[i].name) {
+        window.alert("이미 있는 재료입니다.")
+        return
+      }
+    }
     if (inputCheck.test(item)) {
       dispatch(basketActions.addListMiddlewares(item));
     } else {
@@ -53,34 +58,40 @@ export const BasketList = (props) => {
       <Grid>
         <Image is_basketList src={props.src} is_bg />
 
-        <Grid is_grid width="80%">
-          {list &&
-            list.map((e) => {
+        <Grid is_grid width='80%'>
+          {list.length ?
+            list.map((e,) => {
               return (
-                <Grid
-                  width="auto"
-                  padding="0 20px"
-                  bg="#000"
-                  basket
-                  key={e.id}
-                  _onClick={() => {
-                    console.log("재료선택", e);
-                    history.push(`/list/${e.name}`);
-                  }}
-                >
-                  <Text color="#efefef" size="24px">
-                    {e.name}
-                  </Text>
-                </Grid>
-              );
-            })}
+                <>
+                  <Grid
+                    basket
+                    width="auto"
+                    padding="0 20px"
+                    bg="#000"
+                    key={e.id}
+                    _onClick={() => {
+                      console.log("재료선택")
+                      history.push(`/list/${e.ingredient}`)
+                    }}
+                  >
+                    <Text color="#efefef" size="24px">
+                      {e.ingredient}
+                    </Text>
+                    {/* <Button is_detBtn></Button> */}
+                  </Grid>
+                </>
+              )
+            }) :
+            <Blank></Blank>}
         </Grid>
       </Grid>
 
       <Grid is_flex margin="40px 0px" justify_content="flex-end">
         <Input basket_input _onChange={addList} />
-        <Button is_RectangleSubmitBtn size="90" _onClick={addBtn}>
-          재료추가
+
+        <Button is_RectangleSubmitBtn size='50' _onClick={addBtn}>
+          추가
+
         </Button>
       </Grid>
     </>
