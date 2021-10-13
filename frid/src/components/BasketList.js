@@ -72,11 +72,11 @@ export const BasketList = (props) => {
                     key={e.id}
                     _onClick={() => {
                       console.log("재료선택")
-                      history.push(`/list/${e.name}`)
+                      history.push(`/list/${e.ingredient}`)
                     }}
                   >
                     <Text color="#efefef" size="24px">
-                      {e.name}
+                      {e.ingredient}
                     </Text>
                     {/* <Button is_detBtn></Button> */}
                   </Grid>
