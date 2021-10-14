@@ -18,7 +18,7 @@ const listAPI = (ingredient) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: 'GET',
-      url: `http://localhost:3002/list`,
+      url: `http://3.36.72.109/api/recipe/${ingredient}`,
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json;charset=UTF-8',
@@ -28,7 +28,6 @@ const listAPI = (ingredient) => {
     })
       .then((res) => {
         dispatch(setList(res.data));
-     
       })
       .catch((err) => {
         console.log('listAPI에서 오류 발생', err);

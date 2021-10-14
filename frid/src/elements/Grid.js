@@ -14,9 +14,8 @@ const Grid = (props) => {
     justify_content,
     flex_wrap,
     is_grid,
-    borderRadius,
     basket,
-  } = props;
+  } = props
 
   const styles = {
     is_flex: is_flex,
@@ -29,16 +28,15 @@ const Grid = (props) => {
     justify_content: justify_content,
     flex_wrap: flex_wrap,
     is_grid,
-    borderRadius,
     basket,
-  };
+  }
 
   return (
     <GridBox {...styles} onClick={_onClick}>
       {children}
     </GridBox>
-  );
-};
+  )
+}
 
 Grid.defaultProps = {
   children: null,
@@ -50,7 +48,6 @@ Grid.defaultProps = {
   center: false,
   _onClick: () => {},
   justify_content: false,
-  borderRadius: false,
   flex_wrap: false,
   basket: false,
 }
@@ -64,7 +61,7 @@ const GridBox = styled.div`
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
   ${(props) => (props.is_flex ? "display: flex; align-items: center; " : "")};
-  ${(props) => (props.center ? "text-textAlign: center;" : "")};
+  ${(props) => (props.center ? "text-align: center;" : "")};
   flex-wrap: ${(props) => (props.flex_wrap ? `${props.flex_wrap};` : "")};
   ${(props) =>
     props.is_grid
@@ -72,7 +69,7 @@ const GridBox = styled.div`
       : ""}
   ${(props) =>
     props.basket
-      ? "padding:10px 20px; border-radius:10px; &:hover{background-color:#000000de; cursor: pointer; transition: 0.4s ease-in-out; padding: 25px;}"
+      ? "padding:10px 20px; border-radius:10px; &:hover{background-color:#000000de; cursor: pointer; transition: 0.4s ease-in-out; padding:10px 25px}"
       : ""}
 `
 

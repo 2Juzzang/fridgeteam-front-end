@@ -36,7 +36,7 @@ const loginAPI = (username, password) => {
         const _id = res.data.username;
         console.log(res.data.username);
         setCookie('user_login', jwtToken);
-        localStorage.setItem('user_name', _id);
+       localStorage.setItem('user_name', _id); 
         // axios.defaults.headers.common['Authorization'] = `${jwtToken}`;
         dispatch(
           logIn({

@@ -1,7 +1,7 @@
-import { Block } from "@mui/icons-material";
+import { textAlign } from "@mui/system";
 import React from "react";
 import styled from "styled-components";
-
+import { css, keyframes } from "@emotion/react";
 const Text = (props) => {
   const {
     bold,

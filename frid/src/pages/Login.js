@@ -16,7 +16,7 @@ const Login = (props) => {
   const dispatch = useDispatch();
 
   const [username,setUsername] = React.useState("")
-  const [password, setPassword] = React.useState(" ")
+  const [password, setPassword] = React.useState("")
 
   // const login = () => {
   //   if(id === "" || pwd === "")
@@ -45,7 +45,8 @@ const Login = (props) => {
           value={username}
         />
       </Grid>
-      <Grid is_flex>
+      
+      <Grid is_flex >
         <Input
           placeholder='비밀번호'
           _onChange={(e) => {

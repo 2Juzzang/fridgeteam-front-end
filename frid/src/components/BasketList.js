@@ -1,19 +1,15 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import Button from "../elements/Button"
-import Grid from "../elements/Grid"
-import Image from "../elements/Image"
-import Input from "../elements/Input"
-import Text from "../elements/Text"
+import { Grid, Button, Input, Text, Image } from "../elements/"
 import { history } from "../redux/configStore"
 import { actionsCreators as basketActions } from "../redux/modules/basketList"
-import { inputCheck } from "../shared/inputCheck"
 import { Blank } from "./Blank"
 
 export const BasketList = (props) => {
   const dispatch = useDispatch()
   const [text, setText] = useState("")
 
+  const is_login = useSelector((state) => state.user.is_login)
   const list = useSelector((state) => state.basketList.basket_list)
   useEffect(() => {
     dispatch(basketActions.getListMiddleWares())
@@ -40,26 +36,10 @@ export const BasketList = (props) => {
     setText("")
   }
 
-  return (
-    <>
-      <Grid is_flex justify_content="space-between">
-        <Grid margin="0">
-          <Image />
-        </Grid>
-        <Button
-          is_RectangleSubmitBtn
-          margin="10px 0px"
-          size="80"
-          _onClick={() => {
-            history.push("/login")
-          }}
-        >
-          로그인
-        </Button>
-      </Grid>
-      <Grid>
+  if (is_login) {
+    return (
+      <>
         <Image is_basketList src={props.src} is_bg />
-
         <Grid is_grid width="80%">
           {list.length > 0 ? (
             list.map((e) => {
@@ -83,7 +63,6 @@ export const BasketList = (props) => {
                       is_detBtn
                       _onClick={() => {
                         if (window.confirm("삭제하시겠습니까?")) {
-                          console.log(e.ingredient)
                           dispatch(
                             basketActions.deleteListMiddleWares({
                               ingredient: e.ingredient,
@@ -112,22 +91,28 @@ export const BasketList = (props) => {
               )
             })
           ) : (
-            <Blank></Blank>
+            <Blank is_login></Blank>
           )}
         </Grid>
-      </Grid>
 
-      <Grid is_flex margin="40px 0px" justify_content="flex-end">
-        <Input
-          basket_input
-          _onChange={addList}
-          value={text}
-          placeholder="식재료를 입력해주세요"
-        />
-        <Button is_RectangleSubmitBtn size="50" _onClick={addBtn}>
-          추가
-        </Button>
-      </Grid>
+        <Grid is_flex margin="40px 0px" justify_content="flex-end">
+          <Input
+            basket_input
+            _onChange={addList}
+            value={text}
+            placeholder="식재료를 입력해주세요"
+          />
+          <Button is_RectangleSubmitBtn size="50" _onClick={addBtn}>
+            추가
+          </Button>
+        </Grid>
+      </>
+    )
+  }
+  return (
+    <>
+      <Image is_basketList src={props.src} is_bg />
+      <Blank></Blank>
     </>
   )
 }

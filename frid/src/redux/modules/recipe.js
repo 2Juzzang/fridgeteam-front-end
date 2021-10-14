@@ -18,7 +18,7 @@ const recipeAPI = (ingredient) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: 'GET',
-      url: `http://localhost:3001/detail`,
+      url: `http://3.36.72.109/api/recipe/menu/${ingredient}`,
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json;charset=UTF-8',

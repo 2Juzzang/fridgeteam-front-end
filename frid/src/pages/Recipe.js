@@ -5,7 +5,6 @@ import Text from "../elements/Text";
 import Comment from "../components/Comment";
 import { actionCreators as recipeActions } from "../redux/modules/recipe";
 import CommentList from "../components/CommentList";
-
 const Recipe = (props) => {
   const recipe = props.match.params.name; //value값 가져오기 recipe이름 가져오기
   console.log("레시피", recipe);
