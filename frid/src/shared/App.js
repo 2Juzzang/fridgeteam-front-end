@@ -9,6 +9,7 @@ import Signup from "../pages/Signup"
 import { history } from "../redux/configStore"
 import "./App.css"
 import { Header } from "../components/Header"
+import Star from "../components/Star";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/" exact component={Main} />
         <Route path="/list/:id" exact component={List} />
         <Route path="/recipe/:name" exact component={Recipe} />
+        <Route path="/star" exact component={Star} />
       </ConnectedRouter>
     </div>
   )

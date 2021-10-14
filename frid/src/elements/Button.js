@@ -157,7 +157,7 @@ const CircleSubmitBtn = styled.button`
   margin: ${(props) => props.margin};
   color: white;
   box-sizing: border-box;
-  font-size: 36px;
+  font-size: 20px;
   font-weight: 800;
   text-align: center;
   vertical-align: middle;

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Image from "../elements/Image";
 import Text from "../elements/Text";
 import { actionCreators as recipeActions } from '../redux/modules/recipe';
-
+import {FaRegGrinAlt} from "react-icons/fa"
 const Recipe = (props) => {
  
   const recipe = props.match.params.name;  //value값 가져오기 recipe이름 가져오기
@@ -34,7 +34,7 @@ const Recipe = (props) => {
              <Text margin='0 0 20px 0'>{recipe_list[i]}</Text>
           )
       })}
-
+      <FaRegGrinAlt size="50" color="pink"/>
     
     </>
   );
