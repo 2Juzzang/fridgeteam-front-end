@@ -1,7 +1,7 @@
 import { textAlign } from "@mui/system"
 import React from "react"
 import styled from "styled-components"
-
+import {css, keyframes} from '@emotion/react'
 const Text = (props) => {
   const { bold, color, size, children, margin, padding, basket, _onClick } =
     props
@@ -14,6 +14,7 @@ const Text = (props) => {
     basket,
   }
   return (
+    
     <P onClick={_onClick} {...styles}>
       {children}
     </P>
@@ -46,5 +47,23 @@ const P = styled.p`
     font-size: 10px;
   }
 `
+const floating = keyframes`
+    0 {
+        transform: translateY(0);    
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+`;
 
+const boxStyle = styled.div`
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background: #a951bf;
+  animation: ${floating} 2s ease infinite;
+`;
 export default Text
