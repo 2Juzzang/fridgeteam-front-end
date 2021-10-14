@@ -1,11 +1,17 @@
 import React from "react"
 import { Grid, Button, Input, Text, Image } from "../elements/"
+import { history } from "../redux/configStore"
 
 export const Header = (props) => {
   return (
     <>
       <Grid is_flex justify_content="space-between">
-        <Grid margin="0">
+        <Grid
+          margin="0"
+          _onClick={() => {
+            history.push("/")
+          }}
+        >
           <Image />
         </Grid>
         <Button
