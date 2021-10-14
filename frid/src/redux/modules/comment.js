@@ -50,13 +50,9 @@ const setCommentDB = (comment) => {
     axios
       .get("http://3.36.72.109/api/comments")
       .then((response) => {
-        dispatch(
-          setComment({
-            content: comment.commentText,
-            recipeTitle: comment.post_id,
-          })
-        );
-        window.alert(response.data.msg);
+        const data = response.data;
+        console.log("데이터", data);
+        dispatch(setComment(data));
       })
       .catch((error) => {
         console.log(error);
@@ -69,7 +65,8 @@ export default handleActions(
   {
     [SET_COMMENT]: (state, action) =>
       produce(state, (draft) => {
-        draft.list = action.payload.comment_list;
+        console.log("페이로드", action.payload);
+        draft.list = action.payload.comment;
       }),
 
     [ADD_COMMENT]: (state, action) =>

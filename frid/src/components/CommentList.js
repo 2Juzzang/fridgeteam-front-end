@@ -12,10 +12,15 @@ const CommentList = (props) => {
 
   const comment_list = useSelector((state) => state.comment.list);
   useEffect(() => {
-    dispatch(commentActions.setCommentDB());
+    if (comment_list.length === 0) {
+      dispatch(commentActions.setCommentDB(comment_list));
+    }
   }, []);
   console.log("코멘리스트", comment_list);
-
+  const test = comment_list.filter((i) => {
+    return post_id === i.recipeTitle;
+  });
+  console.log("테스트", test);
   return (
     <>
       {comment_list
@@ -23,7 +28,7 @@ const CommentList = (props) => {
         .reverse()
         .map((c, i) => {
           return (
-            c.post_id === post_id && (
+            post_id === c.recipeTitle && (
               <div
                 key={i}
                 style={{
@@ -35,7 +40,7 @@ const CommentList = (props) => {
                 <Image size="40"></Image>
 
                 <Text is_inline size="16px" margin="0 0 0 20px">
-                  {c.commentText}
+                  {c.content}
                 </Text>
                 <Button is_RectangleCancleBtn size="20">
                   <Text color="white" size="10px">
