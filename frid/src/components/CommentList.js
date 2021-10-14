@@ -10,20 +10,20 @@ const CommentList = (props) => {
   //리스트 가져오기
   const dispatch = useDispatch();
 
-  const comment_list = useSelector((state) => state.comment.list);
+  
   useEffect(() => {
     dispatch(commentActions.setCommentDB());
   }, []);
+  const comment_list = useSelector((state) => state.comment.list);
   console.log("코멘리스트", comment_list);
 
   return (
     <>
       {comment_list
-        .slice(0)
-        .reverse()
+       
         .map((c, i) => {
           return (
-            c.post_id === post_id && (
+           (
               <div
                 key={i}
                 style={{
@@ -35,7 +35,7 @@ const CommentList = (props) => {
                 <Image size="40"></Image>
 
                 <Text is_inline size="16px" margin="0 0 0 20px">
-                  {c.commentText}
+                  {c.content}
                 </Text>
                 <Button is_RectangleCancleBtn size="20">
                   <Text color="white" size="10px">

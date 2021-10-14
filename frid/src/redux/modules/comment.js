@@ -51,12 +51,9 @@ const setCommentDB = (comment) => {
       .get("http://3.36.72.109/api/comments")
       .then((response) => {
         dispatch(
-          setComment({
-            content: comment.commentText,
-            recipeTitle: comment.post_id,
-          })
+          setComment(response.data)
         );
-        window.alert(response.data.msg);
+        window.alert(response.data[0]);
       })
       .catch((error) => {
         console.log(error);
@@ -69,12 +66,12 @@ export default handleActions(
   {
     [SET_COMMENT]: (state, action) =>
       produce(state, (draft) => {
-        draft.list = action.payload.comment_list;
+        draft.list = action.payload.comment;
       }),
 
     [ADD_COMMENT]: (state, action) =>
       produce(state, (draft) => {
-        console.log("액션", action.payload.comment);
+        console.log("액션", action.payload.list);
         draft.list.push(action.payload.comment);
         // console.log("이니셜", initialState);
       }),
