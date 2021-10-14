@@ -70,9 +70,7 @@ const getListMiddleWares = () => {
 
 const deleteListMiddleWares = (list) => {
   return function (dispatch, getState, { history }) {
-    console.log("cmrk", list)
     const { ingredient, id } = list
-    console.log("dasf", ingredient)
     instance
       .delete(`/api/recipe`, {
         data: {
