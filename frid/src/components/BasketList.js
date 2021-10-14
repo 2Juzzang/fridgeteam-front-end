@@ -1,13 +1,8 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import Button from "../elements/Button"
-import Grid from "../elements/Grid"
-import Image from "../elements/Image"
-import Input from "../elements/Input"
-import Text from "../elements/Text"
+import { Grid, Button, Input, Text, Image } from "../elements/"
 import { history } from "../redux/configStore"
 import { actionsCreators as basketActions } from "../redux/modules/basketList"
-import { inputCheck } from "../shared/inputCheck"
 import { Blank } from "./Blank"
 
 export const BasketList = (props) => {
@@ -42,79 +37,61 @@ export const BasketList = (props) => {
 
   return (
     <>
-      <Grid is_flex justify_content="space-between">
-        <Grid margin="0">
-          <Image />
-        </Grid>
-        <Button
-          is_RectangleSubmitBtn
-          margin="10px 0px"
-          size="80"
-          _onClick={() => {
-            history.push("/login")
-          }}
-        >
-          로그인
-        </Button>
-      </Grid>
-      <Grid>
-        <Image is_basketList src={props.src} is_bg />
-
-        <Grid is_grid width="80%">
-          {list.length > 0 ? (
-            list.map((e) => {
-              // key 값은 가장 최상위
-              return (
-                <Grid
-                  basket
-                  width="auto"
-                  padding="0 20px"
-                  bg="#383838"
-                  key={e.id}
-                >
-                  <Grid margin="0px 3px 20px 3px" width="auto" is_flex>
-                    <Button
-                      is_updateBtn
-                      _onClick={() => {
-                        console.log("수정눌렀어요")
-                      }}
-                    ></Button>
-                    <Button
-                      is_detBtn
-                      _onClick={() => {
-                        if (window.confirm("삭제하시겠습니까?")) {
-                          console.log(e.ingredient)
-                          dispatch(
-                            basketActions.deleteListMiddleWares({
-                              ingredient: e.ingredient,
-                              id: e.id,
-                            })
-                          )
-                        } else {
-                          window.alert("취소하셨습니다.")
-                          return
-                        }
-                      }}
-                      // ref={btnValue}
-                    ></Button>
-                  </Grid>
-                  <Text
-                    color="#ffffffd9"
-                    size="24px"
-                    basket
+      <Image is_basketList src={props.src} is_bg />
+      <Grid is_grid width="80%">
+        {list.length > 0 ? (
+          list.map((e) => {
+            // key 값은 가장 최상위
+            return (
+              <Grid
+                basket
+                width="auto"
+                padding="0 20px"
+                bg="#383838"
+                key={e.id}
+              >
+                <Grid margin="0px 3px 20px 3px" width="auto" is_flex>
+                  <Button
+                    is_updateBtn
                     _onClick={() => {
-                      history.push(`/list/${e.ingredient}`)
+                      console.log("수정눌렀어요")
                     }}
-                  >
-                    {e.ingredient}
-                  </Text>
+                  ></Button>
+                  <Button
+                    is_detBtn
+                    _onClick={() => {
+                      if (window.confirm("삭제하시겠습니까?")) {
+                        console.log(e.ingredient)
+                        dispatch(
+                          basketActions.deleteListMiddleWares({
+                            ingredient: e.ingredient,
+                            id: e.id,
+                          })
+                        )
+                      } else {
+                        window.alert("취소하셨습니다.")
+                        return
+                      }
+                    }}
+                    // ref={btnValue}
+                  ></Button>
                 </Grid>
-              )
-            })
-          ) : (
-            <Blank></Blank>
-          )}
-        </Grid>
+                <Text
+                  color="#ffffffd9"
+                  size="24px"
+                  basket
+                  _onClick={() => {
+                    history.push(`/list/${e.ingredient}`)
+                  }}
+                >
+                  {e.ingredient}
+                </Text>
+              </Grid>
+            )
+          })
+        ) : (
+          <Blank></Blank>
+        )}
       </Grid>
 
       <Grid is_flex margin="40px 0px" justify_content="flex-end">
