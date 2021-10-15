@@ -6,7 +6,7 @@ import axios from "axios";
 const SET_COMMENT = "SET_COMMENT";
 const ADD_COMMENT = "ADD_COMMENT";
 const DEL_COMMENT = "DEL_COMMENT";
-
+const UPDATE_COMMENT = "UPDATE_COMMENT";
 const SET_STAR = "SET_STAR";
 // const LOADING = "LOADING";
 
@@ -21,6 +21,10 @@ const delComment = createAction(DEL_COMMENT, (id) => ({
   id,
 }));
 const setStar = createAction(SET_STAR, (star) => ({ star }));
+
+const updateComment = createAction(UPDATE_COMMENT, (comment_lists) => ({
+  comment_lists,
+}));
 
 // const loading = createAction(LOADING, (is_loading) => ({ is_loading }));
 
@@ -88,6 +92,23 @@ const delCommentDB = (id) => {
   };
 };
 
+const updateCommentMD = (comment_lists) => {
+  return function (dispatch, getState, { history }) {
+    console.log("나는댓글리스트", comment_lists);
+    const { content, text, id } = comment_lists;
+    console.log("con", content, text);
+    axios
+      .put(`http://3.36.72.109/api/comments/${id}`, {
+        ...comment_lists,
+        content: text,
+      })
+      .then((res) => {
+        dispatch(updateComment(comment_lists));
+      })
+      .catch((err) => console.log("댓글수정 에러", err));
+  };
+};
+
 // handleActions를 사용하면 추가 데이터의 이름은 항상 action.payload
 export default handleActions(
   {
@@ -112,6 +133,15 @@ export default handleActions(
         //   draft.list.splice(idx, 1);
         // }
       }),
+
+    [UPDATE_COMMENT]: (state, action) =>
+      produce(state, (draft) => {
+        const id = draft.list.findIndex((e) => {
+          console.log("id", e.id, action.payload.comment_lists.id);
+          return e.id === action.payload.comment_lists.id;
+        });
+        draft.list[id].content = action.payload.comment_lists.text;
+      }),
     // [LOADING]: (state, action) =>
     //   produce(state, (draft) => {
     //     draft.is_loading = action.payload.is_loading;
@@ -125,6 +155,7 @@ const actionCreators = {
   setCommentDB,
   setStar,
   delCommentDB,
+  updateCommentMD,
 };
 
 export { actionCreators };

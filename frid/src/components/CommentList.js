@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Image from "../elements/Image";
 import Text from "../elements/Text";
@@ -14,6 +14,9 @@ const CommentList = (props) => {
   //리스트 가져오기
   const comment_list = useSelector((state) => state.comment.list);
 
+  const [update, setUpdate] = useState(false);
+  const [text, setText] = useState("");
+
   let loginUser = localStorage.getItem("user_name");
   //댓글이 0개일 때 댓글을 가져옴
   useEffect(() => {
@@ -24,7 +27,13 @@ const CommentList = (props) => {
     dispatch(commentActions.delCommentDB(e));
     window.location.reload();
   };
-
+  const updateBtn = () => {
+    setUpdate(true);
+  };
+  // 수정하기
+  const updateClick = () => {
+    setUpdate(false);
+  };
   return (
     <>
       {comment_list
@@ -67,30 +76,83 @@ const CommentList = (props) => {
                     </Grid>
                   </Grid>
 
-                  <Grid padding="0 0 0 40px" width="auto" margin="0px">
-                    <Text size="16px" color="yellowgreen">
-                      {c.username}
-                    </Text>
-                  </Grid>
-
-                  <Text is_inline size="16px" margin="0 0 0 20px">
-                    {c.content}
-                  </Text>
-                  <Button is_RectangleCancleBtn size="20">
-                    <Text
-                      color="white"
-                      size="10px"
-                      _onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        if (loginUser == c.username)
-                          if (window.confirm("삭제하시겠습니까?"))
-                            delComment(c.id);
-                      }}
-                    >
-                      X
-                    </Text>
-                  </Button>
+                  {/*  첫번째 오류 map 안에 쓰다보니까 수정버튼 누르면 댓글전체가 수정창으로 변함 입력도 마찬가지 */}
+                  {update ? (
+                    <Grid margin="10px 10px" width="100%">
+                      <input
+                        type="text"
+                        placeholder="수정 할 내용을 입력하세요"
+                        style={{
+                          width: "80%",
+                          borderRadius: "5px",
+                          border: "1px solid",
+                          height: "20px",
+                          padding: "5px",
+                        }}
+                        value={text}
+                        onChange={(e) => {
+                          setText(e.target.value);
+                        }}
+                      />
+                      <button
+                        style={{
+                          width: "10%",
+                          backgroundColor: "#8CE99A",
+                          boxSizing: "border-box",
+                          border: "none",
+                          border: "1px solid #fff",
+                          borderRadius: "5px",
+                          height: "30px",
+                        }}
+                        onClick={() => {
+                          updateClick();
+                          dispatch(
+                            commentActions.updateCommentMD({
+                              ...c,
+                              text,
+                            })
+                          );
+                        }}
+                      >
+                        <Text>수정하기</Text>
+                      </button>
+                    </Grid>
+                  ) : (
+                    <>
+                      <Grid padding="0 0 0 40px" width="auto" margin="0px">
+                        <Text size="16px" color="yellowgreen">
+                          {c.username}
+                        </Text>
+                      </Grid>
+                      <Text is_inline size="16px" margin="0 0 0 20px">
+                        {c.content}
+                      </Text>
+                      <Grid margin="0 0 0 auto">
+                        <Button
+                          is_RectangleCancleBtn
+                          size="20"
+                          _onClick={updateBtn}
+                        >
+                          <Text size="10px">O</Text>
+                        </Button>
+                        <Button is_RectangleCancleBtn size="20">
+                          <Text
+                            color="white"
+                            size="10px"
+                            _onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              if (loginUser == c.username)
+                                if (window.confirm("삭제하시겠습니까?"))
+                                  delComment(c.id);
+                            }}
+                          >
+                            X
+                          </Text>
+                        </Button>
+                      </Grid>
+                    </>
+                  )}
                 </div>
               )
             );
@@ -129,30 +191,83 @@ const CommentList = (props) => {
                     </Grid>
                   </Grid>
 
-                  <Grid padding="0 0 0 40px" width="auto" margin="0px">
-                    <Text size="16px" color="yellowgreen">
-                      {c.username}
-                    </Text>
-                  </Grid>
-
-                  <Text is_inline size="16px" margin="0 0 0 20px">
-                    {c.content}
-                  </Text>
-                  <Button is_RectangleCancleBtn size="20">
-                    <Text
-                      color="white"
-                      size="10px"
-                      _onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        if (loginUser == c.username)
-                          if (window.confirm("삭제하시겠습니까?"))
-                            delComment(c.id);
-                      }}
-                    >
-                      X
-                    </Text>
-                  </Button>
+                  {/*  첫번째 오류 map 안에 쓰다보니까 수정버튼 누르면 댓글전체가 수정창으로 변함 입력도 마찬가지 */}
+                  {update ? (
+                    <Grid margin="10px 10px" width="100%">
+                      <input
+                        type="text"
+                        placeholder="수정 할 내용을 입력하세요"
+                        style={{
+                          width: "80%",
+                          borderRadius: "5px",
+                          border: "1px solid",
+                          height: "20px",
+                          padding: "5px",
+                        }}
+                        value={text}
+                        onChange={(e) => {
+                          setText(e.target.value);
+                        }}
+                      />
+                      <button
+                        style={{
+                          width: "10%",
+                          backgroundColor: "#8CE99A",
+                          boxSizing: "border-box",
+                          border: "none",
+                          border: "1px solid #fff",
+                          borderRadius: "5px",
+                          height: "30px",
+                        }}
+                        onClick={() => {
+                          updateClick();
+                          dispatch(
+                            commentActions.updateCommentMD({
+                              ...c,
+                              text,
+                            })
+                          );
+                        }}
+                      >
+                        <Text>수정하기</Text>
+                      </button>
+                    </Grid>
+                  ) : (
+                    <>
+                      <Grid padding="0 0 0 40px" width="auto" margin="0px">
+                        <Text size="16px" color="yellowgreen">
+                          {c.username}
+                        </Text>
+                      </Grid>
+                      <Text is_inline size="16px" margin="0 0 0 20px">
+                        {c.content}
+                      </Text>
+                      <Grid margin="0 0 0 auto">
+                        <Button
+                          is_RectangleCancleBtn
+                          size="20"
+                          _onClick={updateBtn}
+                        >
+                          <Text size="10px">O</Text>
+                        </Button>
+                        <Button is_RectangleCancleBtn size="20">
+                          <Text
+                            color="white"
+                            size="10px"
+                            _onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              if (loginUser == c.username)
+                                if (window.confirm("삭제하시겠습니까?"))
+                                  delComment(c.id);
+                            }}
+                          >
+                            X
+                          </Text>
+                        </Button>
+                      </Grid>
+                    </>
+                  )}
                 </div>
               )
             );
