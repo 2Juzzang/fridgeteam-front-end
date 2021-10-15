@@ -6,13 +6,15 @@ import basketList from "./modules/basketList";
 import User from "./modules/user";
 import List from "./modules/list";
 import Recipe from "./modules/recipe";
+import Comment from "./modules/comment";
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
   list: List,
   user: User,
   basketList,
-  recipe:Recipe,
+  recipe: Recipe,
+  comment: Comment,
   router: connectRouter(history),
 });
 
