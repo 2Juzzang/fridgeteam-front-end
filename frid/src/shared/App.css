@@ -4,11 +4,16 @@
     font-weight: normal;
     font-style: normal;
   }
-  * {
+* {
     font-family: 'GmarketSansMedium';
     margin: 0 auto;
-      
+    
     max-width:1000px;
     
 
+  }
+body{
+     background-color: #FFF5EE
+    
+  
   }

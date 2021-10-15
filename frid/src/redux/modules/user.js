@@ -31,13 +31,13 @@ const loginAPI = (username, password) => {
     })
       .then((res) => {
         // if (res.data.token != null) {
-        console.log(res.data);
-        const jwtToken = res.data.token;
-        const _id = res.data.username;
-        console.log(res.data.username);
+        console.log(res.data[0]);
+        const jwtToken = res.data[1].token;
+        const _id = res.data[0].username;
+       
         setCookie('user_login', jwtToken);
-       localStorage.setItem('user_name', _id); 
-        // axios.defaults.headers.common['Authorization'] = `${jwtToken}`;
+        localStorage.setItem('user_name', _id);
+        axios.defaults.headers.common['Authorization'] = `${jwtToken}`;
         dispatch(
           logIn({
             username: username,
