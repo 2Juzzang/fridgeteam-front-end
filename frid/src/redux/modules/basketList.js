@@ -32,7 +32,7 @@ const addListMiddlewares = (ingredient) => {
       return
     }
 
-    if (list.length < 20) {
+    if (list.length < 16) {
       instance
         .post("/api/recipe", { ingredient })
         .then((res) => {

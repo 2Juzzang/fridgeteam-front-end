@@ -14,6 +14,7 @@ const Grid = (props) => {
     justify_content,
     flex_wrap,
     is_grid,
+    is_basket,
     basket,
   } = props
 
@@ -28,7 +29,16 @@ const Grid = (props) => {
     justify_content: justify_content,
     flex_wrap: flex_wrap,
     is_grid,
+    is_basket,
     basket,
+  }
+
+  if (is_basket) {
+    return (
+      <BasketGrid {...styles} onClick={_onClick}>
+        {children}
+      </BasketGrid>
+    )
   }
 
   return (
@@ -49,6 +59,7 @@ Grid.defaultProps = {
   _onClick: () => {},
   justify_content: false,
   flex_wrap: false,
+  is_basket: false,
   basket: false,
 }
 
@@ -64,13 +75,23 @@ const GridBox = styled.div`
   ${(props) => (props.center ? "text-align: center;" : "")};
   flex-wrap: ${(props) => (props.flex_wrap ? `${props.flex_wrap};` : "")};
   ${(props) =>
-    props.is_grid
-      ? "display: grid; grid-template-columns: repeat(4,1fr); grid-gap: 1rem; position: absolute; top:50%; left:50%; transform:translate(-50%, -50%) "
-      : ""}
-  ${(props) =>
     props.basket
-      ? "padding:10px 20px; border-radius:10px; &:hover{background-color:#000000de; cursor: pointer; transition: 0.4s ease-in-out; padding:10px 25px}"
+      ? "padding:10px 20px; border-radius:10px; &:hover{background-color:#000000de; cursor: pointer; transition: 0.4s ease-in-out; padding:10px 10px}"
       : ""}
 `
+const BasketGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 3rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  @media only screen and (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1.3rem;
+  }
+`
+
 
 export default Grid

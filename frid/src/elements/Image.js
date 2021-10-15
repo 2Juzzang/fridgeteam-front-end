@@ -66,6 +66,7 @@ const RectangleImage = styled.div`
   background-image: url(${(props) => props.src});
   background-size: cover;
   margin: 4px;
+  box-sizing: border-box;
   @media only screen and (max-width: 768px) {
     width: 60px;
     height: 60px;
@@ -83,6 +84,7 @@ const NoBorderImage = styled.div`
 `
 
 const BasketList = styled.div`
+  box-sizing: border-box;
   width: 100vw;
   height: 100vh;
   border-radius: 10px;

@@ -44,7 +44,7 @@ const P = styled.p`
       ? " text-align:center; &:hover{ cursor: pointer; transition: 0.3s ease-in-out; color:white; "
       : ""}
   @media only screen and (max-width: 768px) {
-    font-size: 10px;
+    font-size: 100px;
   }
 `
 const floating = keyframes`

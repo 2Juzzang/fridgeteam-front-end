@@ -24,6 +24,7 @@ const Input = (props) => {
     return (
       <BasketContinaer>
         <BasketInput
+          {...styles}
           value={value}
           placeholder={placeholder}
           onChange={_onChange}
@@ -77,17 +78,16 @@ const BasketContinaer = styled.div`
 const BasketInput = styled.input`
   position: absolute;
   right: 0;
-  padding: 27px;
+  padding: 22px;
   border-radius: 5px;
   font-size: 30px;
   width: auto;
-  height: 50%;
+  height: 30%;
   &:focus {
     outline: #69db7c solid 1px;
   }
   @media only screen and (max-width: 768px) {
     font-size: 12px;
-    grid-template-columns: repeat(3, 1fr);
   }
 `
 

@@ -1,6 +1,6 @@
 import { ConnectedRouter } from "connected-react-router";
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom"
 import Login from "../pages/Login"
 import { Main } from "../pages/Main"
 import List from "../pages/List"
@@ -9,11 +9,13 @@ import Signup from "../pages/Signup"
 import { history } from "../redux/configStore"
 import "./App.css"
 import { Header } from "../components/Header"
-import Star from "../components/Star";
+import Star from "../components/Star"
+import { Grid } from "../elements/"
+import { NotFound } from "../pages/NotFound"
 
 function App() {
   return (
-    <div className="App">
+    <Grid>
       <Header />
       <ConnectedRouter history={history}>
         <Route path="/login" exact component={Login} />
@@ -23,7 +25,7 @@ function App() {
         <Route path="/recipe/:name" exact component={Recipe} />
         <Route path="/star" exact component={Star} />
       </ConnectedRouter>
-    </div>
+    </Grid>
   )
 }
 
