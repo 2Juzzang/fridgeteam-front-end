@@ -25,6 +25,7 @@ const Recipe = (props) => {
     return <Loading />;
   }
 
+  if(recipe_list!=0)
   return (
     <>
       <Image size="1000" src={recipe_list[1]}></Image>
@@ -49,6 +50,8 @@ const Recipe = (props) => {
       <CommentList post_id={recipe}></CommentList>
     </>
   );
+
+  else return <div>검색 결과가 없습니다!</div>
 };
 
 export default Recipe;

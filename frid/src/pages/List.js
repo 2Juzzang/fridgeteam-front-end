@@ -28,40 +28,36 @@ const List = (props) => {
   }
 
 
+   if (recipe_list != 0)
+     return (
+       <Grid is_flex flex_wrap='wrap' justify_content='center' margin='0 auto'>
+         {recipe_list.map((a, i) => {
+           if (i % 2 == 0)
+             return (
+               <Grid
+                 // 임시 width 5%
 
-  return (
-    <Grid is_flex flex_wrap='wrap' justify_content='center' margin='0 auto'>
-      {recipe_list.map((a, i) => {
-        if(i%2==0)
-        return (
-          <Grid
-            // 임시 width 5%
-           
-            key={i}
-            _onClick={() => {
-              history.push(`/recipe/${a}`);
-            }}
-            margin='0 auto 0 0'
-         
-          > {
-            recipe_list.map((a,k) =>{
-              if(k==i+1){
-                 return <Image src={a} size='470'></Image>;
-              }
-             
-            })
-          }
-            
-            <Text padding='15px 0px' size='20px'>
-              {a}
-            </Text>
-          </Grid>
-        );
-       
-         
-      })}
-    </Grid>
-  );
+                 key={i}
+                 _onClick={() => {
+                   history.push(`/recipe/${a}`);
+                 }}
+                 margin='0 auto 0 0'
+               >
+                 {' '}
+                 {recipe_list.map((a, k) => {
+                   if (k == i + 1) {
+                     return <Image src={a} size='470'></Image>;
+                   }
+                 })}
+                 <Text padding='15px 0px' size='20px'>
+                   {a}
+                 </Text>
+               </Grid>
+             );
+         })}
+       </Grid>
+     );
+   else return <div>검색 결과가 없습니다!</div>;
 };
 
 
