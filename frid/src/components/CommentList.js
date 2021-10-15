@@ -8,13 +8,11 @@ import { BiFridge } from "react-icons/bi";
 import { actionCreators as commentActions } from "../redux/modules/comment";
 import { history } from "../redux/configStore";
 const CommentList = (props) => {
-  // 레시피의 id값 받아옴
-  const { post_id } = props;
-  console.log("여긴어디", post_id);
+  // 레시피의 이름값 받아옴
+  const post_id = useSelector((state) => state.recipe.list);
   const dispatch = useDispatch();
   //리스트 가져오기
   const comment_list = useSelector((state) => state.comment.list);
-  console.log("삭제확인", comment_list);
 
   //댓글이 0개일 때 댓글을 가져옴
   useEffect(() => {
@@ -70,7 +68,11 @@ const CommentList = (props) => {
                     </Grid>
                   </Grid>
 
-                  <Image size="40"></Image>
+                  <Grid padding="0 0 0 40px" width="auto" margin="0px">
+                    <Text size="16px" color="yellowgreen">
+                      {c.username}
+                    </Text>
+                  </Grid>
 
                   <Text is_inline size="16px" margin="0 0 0 20px">
                     {c.content}
@@ -127,7 +129,11 @@ const CommentList = (props) => {
                     </Grid>
                   </Grid>
 
-                  <Image size="40"></Image>
+                  <Grid padding="0 0 0 40px" width="auto" margin="0px">
+                    <Text size="16px" color="yellowgreen">
+                      {c.username}
+                    </Text>
+                  </Grid>
 
                   <Text is_inline size="16px" margin="0 0 0 20px">
                     {c.content}
@@ -184,7 +190,11 @@ const CommentList = (props) => {
                     </Grid>
                   </Grid>
 
-                  <Image size="40"></Image>
+                  <Grid padding="0 0 0 40px" width="auto" margin="0px">
+                    <Text size="16px" color="yellowgreen">
+                      {c.username}
+                    </Text>
+                  </Grid>
 
                   <Text is_inline size="16px" margin="0 0 0 20px">
                     {c.content}
@@ -240,8 +250,11 @@ const CommentList = (props) => {
                       <BiFridge size="30" />
                     </Grid>
                   </Grid>
-
-                  <Image size="40"></Image>
+                  <Grid padding="0 0 0 40px" width="auto" margin="0px">
+                    <Text size="16px" color="yellowgreen">
+                      {c.username}
+                    </Text>
+                  </Grid>
 
                   <Text is_inline size="16px" margin="0 0 0 20px">
                     {c.content}
@@ -263,7 +276,6 @@ const CommentList = (props) => {
                 </div>
               )
             );
-
           if (c.star === 4)
             return (
               c.recipeTitle === post_id && (
@@ -296,6 +308,12 @@ const CommentList = (props) => {
                     <Grid padding="0px" width="auto" margin="0px">
                       <BiFridge size="30" />
                     </Grid>
+                  </Grid>
+
+                  <Grid padding="0 0 0 40px" width="auto" margin="0px">
+                    <Text size="16px" color="yellowgreen">
+                      {c.username}
+                    </Text>
                   </Grid>
 
                   <Image size="40"></Image>
@@ -355,7 +373,11 @@ const CommentList = (props) => {
                     </Grid>
                   </Grid>
 
-                  <Image size="40"></Image>
+                  <Grid padding="0 0 0 40px" width="auto" margin="0px">
+                    <Text size="16px" color="yellowgreen">
+                      {c.username}
+                    </Text>
+                  </Grid>
 
                   <Text is_inline size="16px" margin="0 0 0 20px">
                     {c.content}

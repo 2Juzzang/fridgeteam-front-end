@@ -38,6 +38,7 @@ const addCommentDB = (comment) => {
         content: comment.commentText,
         recipeTitle: comment.post_id,
         star: comment.star,
+        username: comment.username,
       })
       .then(() => {
         dispatch(
@@ -45,6 +46,7 @@ const addCommentDB = (comment) => {
             content: comment.commentText,
             recipeTitle: comment.post_id,
             star: comment.star,
+            username: comment.username,
           })
         );
       })

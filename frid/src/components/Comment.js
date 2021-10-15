@@ -11,12 +11,13 @@ const Comment = (props) => {
   const [commentText, setCommentText] = React.useState();
   const { post_id } = props;
   const star = useSelector((state) => state.comment.star);
+  const username = localStorage.getItem("user_name");
   console.log(star);
   const onChange = (e) => {
     setCommentText(e.target.value);
   };
   const write = () => {
-    const new_data = { post_id, commentText, star };
+    const new_data = { post_id, commentText, star, username };
     dispatch(commentActions.addCommentDB(new_data));
     setCommentText("");
     window.location.reload();

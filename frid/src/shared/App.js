@@ -10,8 +10,17 @@ import { history } from "../redux/configStore"
 import "./App.css"
 import { Header } from "../components/Header"
 import Star from "../components/Star";
-
+import { useDispatch } from 'react-redux';
+import { getCookie } from './Cookie';
+import { actionCreators as userActions } from '../redux/modules/user';
 function App() {
+   const dispatch = useDispatch();
+   const cookie = getCookie('user_login') ? true : false;
+
+    React.useEffect(() => {
+     if (cookie);
+     dispatch(userActions.loginCheck(cookie));
+   }, []);
   return (
     <div className="App">
       <Header />

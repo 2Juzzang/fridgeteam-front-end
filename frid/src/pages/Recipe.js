@@ -5,15 +5,25 @@ import Text from "../elements/Text";
 import Comment from "../components/Comment";
 import { actionCreators as recipeActions } from "../redux/modules/recipe";
 import CommentList from "../components/CommentList";
+import Loading from "../shared/Loading";
 const Recipe = (props) => {
   const recipe = props.match.params.name;
-  const list = props.match.params.name; //value값 가져오기 recipe이름 가져오기
+  const list = props.match.params.name;
+
+  const is_loading = useSelector((state) => state.recipe.is_loading);
+
+  console.log("레시피", recipe);
   const dispatch = useDispatch();
   React.useEffect(() => {
     dispatch(recipeActions.recipeAPI(recipe));
     dispatch(recipeActions.findRecipe(list));
   }, []);
   const recipe_list = useSelector((state) => state.recipe.recipe);
+  console.log(recipe_list);
+
+  if (is_loading) {
+    return <Loading />;
+  }
 
   return (
     <>

@@ -4,9 +4,14 @@ const getCookie = (name) => {
   // 키 값을 기준으로 파싱합니다.
   let parts = value.split('; ' + name + '=');
   // value를 return!
-  if (parts.length === 2) {
-    return parts.pop().split(';').shift();
+ if (parts.length === 2) {
+    return parts.pop().split(";").shift();
+  } else if (parts === "; ") {
+    return undefined;
+  } else {
+    return parts.pop().split("=")[1];
   }
+  
 };
 
 // 쿠키에 저장하는 함수
