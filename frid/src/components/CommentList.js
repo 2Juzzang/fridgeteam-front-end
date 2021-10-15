@@ -7,7 +7,7 @@ import  Grid  from "../elements/Grid";
 import { BiFridge } from 'react-icons/bi';
 import { actionCreators as commentActions } from "../redux/modules/comment";
 const CommentList = (props) => {
-  // 레시피의 id값 받아옴
+  // 레시피의 이름값 받아옴
   const post_id= useSelector((state)=> state.recipe.list)
   //리스트 가져오기
   const dispatch = useDispatch();
@@ -42,23 +42,27 @@ const CommentList = (props) => {
                   margin='0px'
                 >
                   <Grid padding='0px' width='auto' margin='0px'>
-                    <BiFridge size='30'  />
+                    <BiFridge size='30' />
                   </Grid>
                   <Grid padding='0px' width='auto' margin='0px'>
-                    <BiFridge size='30'  />
+                    <BiFridge size='30' />
                   </Grid>
                   <Grid padding='0px' width='auto' margin='0px'>
-                    <BiFridge size='30'  />
+                    <BiFridge size='30' />
                   </Grid>
                   <Grid padding='0px' width='auto' margin='0px'>
-                    <BiFridge size='30'  />
+                    <BiFridge size='30' />
                   </Grid>
                   <Grid padding='0px' width='auto' margin='0px'>
                     <BiFridge size='30' />
                   </Grid>
                 </Grid>
 
-                <Image size='40'></Image>
+                <Grid padding='0 0 0 40px' width='auto' margin='0px'>
+                  <Text size='16px' color='yellowgreen'>
+                    {c.username}
+                  </Text>
+                </Grid>
 
                 <Text is_inline size='16px' margin='0 0 0 20px'>
                   {c.content}
@@ -93,20 +97,24 @@ const CommentList = (props) => {
                       <BiFridge size='30' color='red' />
                     </Grid>
                     <Grid padding='0px' width='auto' margin='0px'>
-                      <BiFridge size='30'  />
+                      <BiFridge size='30' />
                     </Grid>
                     <Grid padding='0px' width='auto' margin='0px'>
-                      <BiFridge size='30'  />
+                      <BiFridge size='30' />
                     </Grid>
                     <Grid padding='0px' width='auto' margin='0px'>
-                      <BiFridge size='30'  />
+                      <BiFridge size='30' />
                     </Grid>
                     <Grid padding='0px' width='auto' margin='0px'>
                       <BiFridge size='30' />
                     </Grid>
                   </Grid>
 
-                  <Image size='40'></Image>
+                  <Grid padding='0 0 0 40px' width='auto' margin='0px'>
+                    <Text size='16px' color='yellowgreen'>
+                      {c.username}
+                    </Text>
+                  </Grid>
 
                   <Text is_inline size='16px' margin='0 0 0 20px'>
                     {c.content}
@@ -147,14 +155,18 @@ const CommentList = (props) => {
                         <BiFridge size='30' />
                       </Grid>
                       <Grid padding='0px' width='auto' margin='0px'>
-                        <BiFridge size='30'  />
+                        <BiFridge size='30' />
                       </Grid>
                       <Grid padding='0px' width='auto' margin='0px'>
-                        <BiFridge size='30'  />
+                        <BiFridge size='30' />
                       </Grid>
                     </Grid>
 
-                    <Image size='40'></Image>
+                    <Grid padding='0 0 0 40px' width='auto' margin='0px'>
+                      <Text size='16px' color='yellowgreen'>
+                        {c.username}
+                      </Text>
+                    </Grid>
 
                     <Text is_inline size='16px' margin='0 0 0 20px'>
                       {c.content}
@@ -198,11 +210,15 @@ const CommentList = (props) => {
                           <BiFridge size='30' />
                         </Grid>
                         <Grid padding='0px' width='auto' margin='0px'>
-                          <BiFridge size='30'  />
+                          <BiFridge size='30' />
                         </Grid>
                       </Grid>
 
-                      <Image size='40'></Image>
+                      <Grid padding='0 0 0 40px' width='auto' margin='0px'>
+                        <Text size='16px' color='yellowgreen'>
+                          {c.username}
+                        </Text>
+                      </Grid>
 
                       <Text is_inline size='16px' margin='0 0 0 20px'>
                         {c.content}
@@ -246,11 +262,15 @@ const CommentList = (props) => {
                             <BiFridge size='30' color='red' />
                           </Grid>
                           <Grid padding='0px' width='auto' margin='0px'>
-                            <BiFridge size='30'  />
+                            <BiFridge size='30' />
                           </Grid>
                         </Grid>
 
-                        <Image size='40'></Image>
+                        <Grid padding='0 0 0 40px' width='auto' margin='0px'>
+                          <Text size='16px' color='yellowgreen'>
+                            {c.username}
+                          </Text>
+                        </Grid>
 
                         <Text is_inline size='16px' margin='0 0 0 20px'>
                           {c.content}
@@ -298,7 +318,11 @@ const CommentList = (props) => {
                             </Grid>
                           </Grid>
 
-                          <Image size='40'></Image>
+                          <Grid padding='0 0 0 40px' width='auto' margin='0px'>
+                            <Text size='16px' color='yellowgreen'>
+                              {c.username}
+                            </Text>
+                          </Grid>
 
                           <Text is_inline size='16px' margin='0 0 0 20px'>
                             {c.content}

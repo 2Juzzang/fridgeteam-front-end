@@ -32,6 +32,7 @@ const addCommentDB = (comment) => {
         content: comment.commentText,
         recipeTitle: comment.post_id,
         star: comment.star,
+        username: comment.username,
       })
       .then((response) => {
         dispatch(
@@ -39,6 +40,7 @@ const addCommentDB = (comment) => {
             content: comment.commentText,
             recipeTitle: comment.post_id,
             star: comment.star,
+            username: comment.username,
           })
         );
         window.alert("등록");

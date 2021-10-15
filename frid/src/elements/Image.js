@@ -37,6 +37,7 @@ Image.defaultProps = {
   is_RectangleImage: false,
   is_NoBorderImage: false,
   is_basketList: false,
+  
 };
 
 const CircleImage = styled.div`
@@ -74,6 +75,7 @@ const NoBorderImage = styled.div`
   background-image: url(${(props) => props.src});
   background-size: cover;
   margin: 4px;
+  z-index: -99;
 `;
 
 const BasketList = styled.div`
@@ -86,6 +88,7 @@ const BasketList = styled.div`
   ${(props) => (props.is_bg ? "position:fixed; z-index:-1" : "")}
   background-position: center center;
   opacity: 0.8;
+  
 `;
 
 export default Image;

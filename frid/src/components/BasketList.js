@@ -36,7 +36,7 @@ export const BasketList = (props) => {
     setText("")
   }
 
-  // if (is_login) {
+  if (is_login) {
     return (
       <>
         <Image is_basketList src={props.src} is_bg />
@@ -108,13 +108,13 @@ export const BasketList = (props) => {
         </Grid>
       </>
     )
-  // }
-  // return (
-  //   <>
-  //     <Image is_basketList src={props.src} is_bg />
-  //     <Blank></Blank>
-  //   </>
-  // )
+  }
+  return (
+    <>
+      <Image is_basketList src={props.src} is_bg />
+      <Blank></Blank>
+    </>
+  )
 }
 
 BasketList.defaultProps = {
