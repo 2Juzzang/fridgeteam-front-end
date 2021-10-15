@@ -57,6 +57,8 @@ const Signup = (props) => {
       </Grid>
       <Grid is_flex>
         <Input
+          password
+          type="password"
           placeholder="비밀번호(8자 이상)"
           _onChange={(e) => {
             setPassword(e.target.value);
@@ -66,6 +68,8 @@ const Signup = (props) => {
       </Grid>
       <Grid is_flex>
         <Input
+          password
+          type="password"
           placeholder="비밀번호확인(8자 이상)"
           _onChange={(e) => {
             setIs_pwd(e.target.value);

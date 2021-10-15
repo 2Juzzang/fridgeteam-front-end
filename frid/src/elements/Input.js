@@ -14,11 +14,13 @@ const Input = (props) => {
     width,
     value,
     comment,
+    password,
   } = props;
   const styles = {
     placeholder: placeholder,
     width: width,
     value,
+    type,
   };
 
   if (basket_input) {
@@ -39,6 +41,14 @@ const Input = (props) => {
         placeholder={placeholder}
         onChange={_onChange}
       ></CustomComment>
+    );
+  }
+  if (password) {
+    return (
+      <div>
+        <CustomLabel>{label}</CustomLabel>
+        <PasswordInput {...styles} onChange={_onChange}></PasswordInput>
+      </div>
     );
   }
   return (
@@ -107,6 +117,15 @@ const BasketInput = styled.input`
   @media only screen and (max-width: 768px) {
     font-size: 12px;
     grid-template-columns: repeat(3, 1fr);
+  }
+`;
+const PasswordInput = styled.input`
+  margin-bottom: 30px;
+  width: 300px;
+  height: 50px;
+  font-size: 20px;
+  &:focus {
+    outline: #69db7c solid 1px;
   }
 `;
 
