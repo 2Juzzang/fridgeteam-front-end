@@ -6,14 +6,14 @@ import Comment from "../components/Comment";
 import { actionCreators as recipeActions } from "../redux/modules/recipe";
 import CommentList from "../components/CommentList";
 const Recipe = (props) => {
-  const recipe = props.match.params.name; //value값 가져오기 recipe이름 가져오기
-  console.log("레시피", recipe);
+  const recipe = props.match.params.name;
+  const list = props.match.params.name; //value값 가져오기 recipe이름 가져오기
   const dispatch = useDispatch();
   React.useEffect(() => {
     dispatch(recipeActions.recipeAPI(recipe));
+    dispatch(recipeActions.findRecipe(list));
   }, []);
   const recipe_list = useSelector((state) => state.recipe.recipe);
-  console.log(recipe_list);
 
   return (
     <>

@@ -3,16 +3,19 @@ import { produce } from 'immer';
 import axios from 'axios';
 // Actions
 const SET_RECIPE = 'SET_RECIPE';
-
+const FIND_RECIPE = 'FINE_RECIPE';
 // const DELETE = "post/DELETE";
 // const EDIT = "post/EDIT";
 
 const initialState = {
   recipe: [],
+  list: [],
 };
 
 //Action creators
 const setRecipe = createAction(SET_RECIPE, (recipe) => ({ recipe }));
+const findRecipe = createAction(FIND_RECIPE, (list) => ({list}))
+
 
 const recipeAPI = (ingredient) => {
   return function (dispatch, getState, { history }) {
@@ -35,6 +38,8 @@ const recipeAPI = (ingredient) => {
   };
 };
 
+
+
 // Reducer
 export default handleActions(
   {
@@ -42,6 +47,11 @@ export default handleActions(
       produce(state, (draft) => {
         draft.recipe = action.payload.recipe;
       }),
+      [FIND_RECIPE] : (state, action) => 
+        produce(state, (draft) => {
+          draft.list = action.payload.list
+        }),
+      
     
   },
   initialState
@@ -50,5 +60,6 @@ export default handleActions(
 const actionCreators = {
   setRecipe,
   recipeAPI,
+  findRecipe,
 };
 export { actionCreators };
