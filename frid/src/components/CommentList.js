@@ -18,9 +18,7 @@ const CommentList = (props) => {
 
   //댓글이 0개일 때 댓글을 가져옴
   useEffect(() => {
-    if (comment_list.length === 0) {
-      dispatch(commentActions.setCommentDB());
-    }
+    dispatch(commentActions.setCommentDB());
   }, []);
   //댓글 삭제
   const delComment = (e) => {
