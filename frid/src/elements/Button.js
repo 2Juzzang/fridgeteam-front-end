@@ -55,9 +55,9 @@ const Button = (props) => {
         sx={{
           color: "#ff2020a6",
           transform: "scaleX(-1)",
-          fontSize: "22px",
+          fontSize: "40px",
           boxShadow: 5,
-          marginLeft: "10px",
+        
           "&:hover": {
             color: "red",
             cursor: "pointer",

@@ -110,6 +110,7 @@ const Star = (props) => {
         width='auto'
         margin='0px 30px'
         _onClick={() => {
+           window.alert('평점 등록 완료했습니다');
           dispatch(commentActions.setStar(a));
         }}
       >

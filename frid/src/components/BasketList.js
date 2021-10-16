@@ -47,48 +47,42 @@ export const BasketList = (props) => {
               return (
                 <Grid
                   basket
-                  width="auto"
-                  padding="0 20px"
-                  bg="#383838"
+                  width='auto'
+                  padding='0 20px'
+                  bg='#383838'
                   key={e.id}
                 >
-                  <Grid margin="0px 3px 20px 3px" width="auto" is_flex>
-                    <Button
-                      is_updateBtn
-                      _onClick={() => {
-                        console.log("수정눌렀어요")
-                      }}
-                    ></Button>
+                  <Grid width='auto' justify_content='center' is_flex>
                     <Button
                       is_detBtn
                       _onClick={() => {
-                        if (window.confirm("삭제하시겠습니까?")) {
+                        if (window.confirm('삭제하시겠습니까?')) {
                           dispatch(
                             basketActions.deleteListMiddleWares({
                               ingredient: e.ingredient,
                               id: e.id,
                             })
-                          )
+                          );
                         } else {
-                          window.alert("취소하셨습니다.")
-                          return
+                          window.alert('취소하셨습니다.');
+                          return;
                         }
                       }}
                       // ref={btnValue}
                     ></Button>
                   </Grid>
                   <Text
-                    color="#ffffffd9"
-                    size="24px"
+                    color='#ffffffd9'
+                    size='24px'
                     basket
                     _onClick={() => {
-                      history.push(`/list/${e.ingredient}`)
+                      history.push(`/list/${e.ingredient}`);
                     }}
                   >
                     {e.ingredient}
                   </Text>
                 </Grid>
-              )
+              );
             })
           ) : (
             <Blank is_login></Blank>
