@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Image from "../elements/Image";
 import Text from "../elements/Text";
@@ -13,20 +13,27 @@ const CommentList = (props) => {
   const dispatch = useDispatch();
   //리스트 가져오기
   const comment_list = useSelector((state) => state.comment.list);
-   
-  let loginUser = localStorage.getItem('user_name')
+
+  const [update, setUpdate] = useState(false);
+  const [text, setText] = useState("");
+
+  let loginUser = localStorage.getItem("user_name");
   //댓글이 0개일 때 댓글을 가져옴
   useEffect(() => {
-     {
-      dispatch(commentActions.setCommentDB());
-    }
+    dispatch(commentActions.setCommentDB());
   }, []);
   //댓글 삭제
   const delComment = (e) => {
     dispatch(commentActions.delCommentDB(e));
     window.location.reload();
   };
-
+  const updateBtn = () => {
+    setUpdate(true);
+  };
+  // 수정하기
+  const updateClick = () => {
+    setUpdate(false);
+  };
   return (
     <>
       {comment_list
@@ -69,6 +76,236 @@ const CommentList = (props) => {
                     </Grid>
                   </Grid>
 
+                  {/*  첫번째 오류 map 안에 쓰다보니까 수정버튼 누르면 댓글전체가 수정창으로 변함 입력도 마찬가지 */}
+                  {update ? (
+                    <Grid margin="10px 10px" width="100%">
+                      <input
+                        type="text"
+                        placeholder="수정 할 내용을 입력하세요"
+                        style={{
+                          width: "80%",
+                          borderRadius: "5px",
+                          border: "1px solid",
+                          height: "20px",
+                          padding: "5px",
+                        }}
+                        value={text}
+                        onChange={(e) => {
+                          setText(e.target.value);
+                        }}
+                      />
+                      <button
+                        style={{
+                          width: "10%",
+                          backgroundColor: "#8CE99A",
+                          boxSizing: "border-box",
+                          border: "none",
+                          border: "1px solid #fff",
+                          borderRadius: "5px",
+                          height: "30px",
+                        }}
+                        onClick={() => {
+                          updateClick();
+                          dispatch(
+                            commentActions.updateCommentMD({
+                              ...c,
+                              text,
+                            })
+                          );
+                        }}
+                      >
+                        <Text>수정하기</Text>
+                      </button>
+                    </Grid>
+                  ) : (
+                    <>
+                      <Grid padding="0 0 0 40px" width="auto" margin="0px">
+                        <Text size="16px" color="yellowgreen">
+                          {c.username}
+                        </Text>
+                      </Grid>
+                      <Text is_inline size="16px" margin="0 0 0 20px">
+                        {c.content}
+                      </Text>
+                      <Grid margin="0 0 0 auto">
+                        <Button
+                          is_RectangleCancleBtn
+                          size="20"
+                          _onClick={updateBtn}
+                        >
+                          <Text size="10px">O</Text>
+                        </Button>
+                        <Button is_RectangleCancleBtn size="20">
+                          <Text
+                            color="white"
+                            size="10px"
+                            _onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              if (loginUser == c.username)
+                                if (window.confirm("삭제하시겠습니까?"))
+                                  delComment(c.id);
+                            }}
+                          >
+                            X
+                          </Text>
+                        </Button>
+                      </Grid>
+                    </>
+                  )}
+                </div>
+              )
+            );
+
+          if (c.star === 1)
+            return (
+              c.recipeTitle === post_id && (
+                <div
+                  key={i}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    margin: "20px 0",
+                  }}
+                >
+                  <Grid
+                    is_flex
+                    justify_content="flex-start"
+                    padding="0px"
+                    margin="0px"
+                  >
+                    <Grid padding="0px" width="auto" margin="0px">
+                      <BiFridge size="30" color="red" />
+                    </Grid>
+                    <Grid padding="0px" width="auto" margin="0px">
+                      <BiFridge size="30" />
+                    </Grid>
+                    <Grid padding="0px" width="auto" margin="0px">
+                      <BiFridge size="30" />
+                    </Grid>
+                    <Grid padding="0px" width="auto" margin="0px">
+                      <BiFridge size="30" />
+                    </Grid>
+                    <Grid padding="0px" width="auto" margin="0px">
+                      <BiFridge size="30" />
+                    </Grid>
+                  </Grid>
+
+                  {/*  첫번째 오류 map 안에 쓰다보니까 수정버튼 누르면 댓글전체가 수정창으로 변함 입력도 마찬가지 */}
+                  {update ? (
+                    <Grid margin="10px 10px" width="100%">
+                      <input
+                        type="text"
+                        placeholder="수정 할 내용을 입력하세요"
+                        style={{
+                          width: "80%",
+                          borderRadius: "5px",
+                          border: "1px solid",
+                          height: "20px",
+                          padding: "5px",
+                        }}
+                        value={text}
+                        onChange={(e) => {
+                          setText(e.target.value);
+                        }}
+                      />
+                      <button
+                        style={{
+                          width: "10%",
+                          backgroundColor: "#8CE99A",
+                          boxSizing: "border-box",
+                          border: "none",
+                          border: "1px solid #fff",
+                          borderRadius: "5px",
+                          height: "30px",
+                        }}
+                        onClick={() => {
+                          updateClick();
+                          dispatch(
+                            commentActions.updateCommentMD({
+                              ...c,
+                              text,
+                            })
+                          );
+                        }}
+                      >
+                        <Text>수정하기</Text>
+                      </button>
+                    </Grid>
+                  ) : (
+                    <>
+                      <Grid padding="0 0 0 40px" width="auto" margin="0px">
+                        <Text size="16px" color="yellowgreen">
+                          {c.username}
+                        </Text>
+                      </Grid>
+                      <Text is_inline size="16px" margin="0 0 0 20px">
+                        {c.content}
+                      </Text>
+                      <Grid margin="0 0 0 auto">
+                        <Button
+                          is_RectangleCancleBtn
+                          size="20"
+                          _onClick={updateBtn}
+                        >
+                          <Text size="10px">O</Text>
+                        </Button>
+                        <Button is_RectangleCancleBtn size="20">
+                          <Text
+                            color="white"
+                            size="10px"
+                            _onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              if (loginUser == c.username)
+                                if (window.confirm("삭제하시겠습니까?"))
+                                  delComment(c.id);
+                            }}
+                          >
+                            X
+                          </Text>
+                        </Button>
+                      </Grid>
+                    </>
+                  )}
+                </div>
+              )
+            );
+
+          if (c.star === 2)
+            return (
+              c.recipeTitle === post_id && (
+                <div
+                  key={i}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    margin: "20px 0",
+                  }}
+                >
+                  <Grid
+                    is_flex
+                    justify_content="flex-start"
+                    padding="0px"
+                    margin="0px"
+                  >
+                    <Grid padding="0px" width="auto" margin="0px">
+                      <BiFridge size="30" color="red" />
+                    </Grid>
+                    <Grid padding="0px" width="auto" margin="0px">
+                      <BiFridge size="30" color="red" />
+                    </Grid>
+                    <Grid padding="0px" width="auto" margin="0px">
+                      <BiFridge size="30" />
+                    </Grid>
+                    <Grid padding="0px" width="auto" margin="0px">
+                      <BiFridge size="30" />
+                    </Grid>
+                    <Grid padding="0px" width="auto" margin="0px">
+                      <BiFridge size="30" />
+                    </Grid>
+                  </Grid>
+
                   <Grid padding="0 0 0 40px" width="auto" margin="0px">
                     <Text size="16px" color="yellowgreen">
                       {c.username}
@@ -85,132 +322,8 @@ const CommentList = (props) => {
                       _onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
-                        if(loginUser==c.username)
-                        if (window.confirm("삭제하시겠습니까?"))
-                          delComment(c.id);
-                      }}
-                    >
-                      X
-                    </Text>
-                  </Button>
-                </div>
-              )
-            );
-
-          if (c.star === 1)
-            return (
-              c.recipeTitle === post_id && (
-                <div
-                  key={i}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    margin: '20px 0',
-                  }}
-                >
-                  <Grid
-                    is_flex
-                    justify_content='flex-start'
-                    padding='0px'
-                    margin='0px'
-                  >
-                    <Grid padding='0px' width='auto' margin='0px'>
-                      <BiFridge size='30' color='red' />
-                    </Grid>
-                    <Grid padding='0px' width='auto' margin='0px'>
-                      <BiFridge size='30' />
-                    </Grid>
-                    <Grid padding='0px' width='auto' margin='0px'>
-                      <BiFridge size='30' />
-                    </Grid>
-                    <Grid padding='0px' width='auto' margin='0px'>
-                      <BiFridge size='30' />
-                    </Grid>
-                    <Grid padding='0px' width='auto' margin='0px'>
-                      <BiFridge size='30' />
-                    </Grid>
-                  </Grid>
-
-                  <Grid padding='0 0 0 40px' width='auto' margin='0px'>
-                    <Text size='16px' color='yellowgreen'>
-                      {c.username}
-                    </Text>
-                  </Grid>
-
-                  <Text is_inline size='16px' margin='0 0 0 20px'>
-                    {c.content}
-                  </Text>
-                  <Button is_RectangleCancleBtn size='20'>
-                    <Text
-                      color='white'
-                      size='10px'
-                      _onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
                         if (loginUser == c.username)
-                          if (window.confirm('삭제하시겠습니까?'))
-                            delComment(c.id);
-                      }}
-                    >
-                      X
-                    </Text>
-                  </Button>
-                </div>
-              )
-            );
-
-          if (c.star === 2)
-            return (
-              c.recipeTitle === post_id && (
-                <div
-                  key={i}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    margin: '20px 0',
-                  }}
-                >
-                  <Grid
-                    is_flex
-                    justify_content='flex-start'
-                    padding='0px'
-                    margin='0px'
-                  >
-                    <Grid padding='0px' width='auto' margin='0px'>
-                      <BiFridge size='30' color='red' />
-                    </Grid>
-                    <Grid padding='0px' width='auto' margin='0px'>
-                      <BiFridge size='30' color='red' />
-                    </Grid>
-                    <Grid padding='0px' width='auto' margin='0px'>
-                      <BiFridge size='30' />
-                    </Grid>
-                    <Grid padding='0px' width='auto' margin='0px'>
-                      <BiFridge size='30' />
-                    </Grid>
-                    <Grid padding='0px' width='auto' margin='0px'>
-                      <BiFridge size='30' />
-                    </Grid>
-                  </Grid>
-
-                  <Grid padding='0 0 0 40px' width='auto' margin='0px'>
-                    <Text size='16px' color='yellowgreen'>
-                      {c.username}
-                    </Text>
-                  </Grid>
-
-                  <Text is_inline size='16px' margin='0 0 0 20px'>
-                    {c.content}
-                  </Text>
-                  <Button is_RectangleCancleBtn size='20'>
-                    <Text
-                      color='white'
-                      size='10px'
-                      _onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        if (loginUser == c.username)
-                          if (window.confirm('삭제하시겠습니까?'))
+                          if (window.confirm("삭제하시겠습니까?"))
                             delComment(c.id);
                       }}
                     >
@@ -227,51 +340,51 @@ const CommentList = (props) => {
                 <div
                   key={i}
                   style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    margin: '20px 0',
+                    display: "flex",
+                    alignItems: "center",
+                    margin: "20px 0",
                   }}
                 >
                   <Grid
                     is_flex
-                    justify_content='flex-start'
-                    padding='0px'
-                    margin='0px'
+                    justify_content="flex-start"
+                    padding="0px"
+                    margin="0px"
                   >
-                    <Grid padding='0px' width='auto' margin='0px'>
-                      <BiFridge size='30' color='red' />
+                    <Grid padding="0px" width="auto" margin="0px">
+                      <BiFridge size="30" color="red" />
                     </Grid>
-                    <Grid padding='0px' width='auto' margin='0px'>
-                      <BiFridge size='30' color='red' />
+                    <Grid padding="0px" width="auto" margin="0px">
+                      <BiFridge size="30" color="red" />
                     </Grid>
-                    <Grid padding='0px' width='auto' margin='0px'>
-                      <BiFridge size='30' color='red' />
+                    <Grid padding="0px" width="auto" margin="0px">
+                      <BiFridge size="30" color="red" />
                     </Grid>
-                    <Grid padding='0px' width='auto' margin='0px'>
-                      <BiFridge size='30' />
+                    <Grid padding="0px" width="auto" margin="0px">
+                      <BiFridge size="30" />
                     </Grid>
-                    <Grid padding='0px' width='auto' margin='0px'>
-                      <BiFridge size='30' />
+                    <Grid padding="0px" width="auto" margin="0px">
+                      <BiFridge size="30" />
                     </Grid>
                   </Grid>
-                  <Grid padding='0 0 0 40px' width='auto' margin='0px'>
-                    <Text size='16px' color='yellowgreen'>
+                  <Grid padding="0 0 0 40px" width="auto" margin="0px">
+                    <Text size="16px" color="yellowgreen">
                       {c.username}
                     </Text>
                   </Grid>
 
-                  <Text is_inline size='16px' margin='0 0 0 20px'>
+                  <Text is_inline size="16px" margin="0 0 0 20px">
                     {c.content}
                   </Text>
-                  <Button is_RectangleCancleBtn size='20'>
+                  <Button is_RectangleCancleBtn size="20">
                     <Text
-                      color='white'
-                      size='10px'
+                      color="white"
+                      size="10px"
                       _onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
                         if (loginUser == c.username)
-                          if (window.confirm('삭제하시겠습니까?'))
+                          if (window.confirm("삭제하시겠습니까?"))
                             delComment(c.id);
                       }}
                     >
@@ -287,52 +400,52 @@ const CommentList = (props) => {
                 <div
                   key={i}
                   style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    margin: '20px 0',
+                    display: "flex",
+                    alignItems: "center",
+                    margin: "20px 0",
                   }}
                 >
                   <Grid
                     is_flex
-                    justify_content='flex-start'
-                    padding='0px'
-                    margin='0px'
+                    justify_content="flex-start"
+                    padding="0px"
+                    margin="0px"
                   >
-                    <Grid padding='0px' width='auto' margin='0px'>
-                      <BiFridge size='30' color='red' />
+                    <Grid padding="0px" width="auto" margin="0px">
+                      <BiFridge size="30" color="red" />
                     </Grid>
-                    <Grid padding='0px' width='auto' margin='0px'>
-                      <BiFridge size='30' color='red' />
+                    <Grid padding="0px" width="auto" margin="0px">
+                      <BiFridge size="30" color="red" />
                     </Grid>
-                    <Grid padding='0px' width='auto' margin='0px'>
-                      <BiFridge size='30' color='red' />
+                    <Grid padding="0px" width="auto" margin="0px">
+                      <BiFridge size="30" color="red" />
                     </Grid>
-                    <Grid padding='0px' width='auto' margin='0px'>
-                      <BiFridge size='30' color='red' />
+                    <Grid padding="0px" width="auto" margin="0px">
+                      <BiFridge size="30" color="red" />
                     </Grid>
-                    <Grid padding='0px' width='auto' margin='0px'>
-                      <BiFridge size='30' />
+                    <Grid padding="0px" width="auto" margin="0px">
+                      <BiFridge size="30" />
                     </Grid>
                   </Grid>
 
-                  <Grid padding='0 0 0 40px' width='auto' margin='0px'>
-                    <Text size='16px' color='yellowgreen'>
+                  <Grid padding="0 0 0 40px" width="auto" margin="0px">
+                    <Text size="16px" color="yellowgreen">
                       {c.username}
                     </Text>
                   </Grid>
 
-                  <Text is_inline size='16px' margin='0 0 0 20px'>
+                  <Text is_inline size="16px" margin="0 0 0 20px">
                     {c.content}
                   </Text>
-                  <Button is_RectangleCancleBtn size='20'>
+                  <Button is_RectangleCancleBtn size="20">
                     <Text
-                      color='white'
-                      size='10px'
+                      color="white"
+                      size="10px"
                       _onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
                         if (loginUser == c.username)
-                          if (window.confirm('삭제하시겠습니까?'))
+                          if (window.confirm("삭제하시겠습니까?"))
                             delComment(c.id);
                       }}
                     >
@@ -349,52 +462,52 @@ const CommentList = (props) => {
                 <div
                   key={i}
                   style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    margin: '20px 0',
+                    display: "flex",
+                    alignItems: "center",
+                    margin: "20px 0",
                   }}
                 >
                   <Grid
                     is_flex
-                    justify_content='flex-start'
-                    padding='0px'
-                    margin='0px'
+                    justify_content="flex-start"
+                    padding="0px"
+                    margin="0px"
                   >
-                    <Grid padding='0px' width='auto' margin='0px'>
-                      <BiFridge size='30' color='red' />
+                    <Grid padding="0px" width="auto" margin="0px">
+                      <BiFridge size="30" color="red" />
                     </Grid>
-                    <Grid padding='0px' width='auto' margin='0px'>
-                      <BiFridge size='30' color='red' />
+                    <Grid padding="0px" width="auto" margin="0px">
+                      <BiFridge size="30" color="red" />
                     </Grid>
-                    <Grid padding='0px' width='auto' margin='0px'>
-                      <BiFridge size='30' color='red' />
+                    <Grid padding="0px" width="auto" margin="0px">
+                      <BiFridge size="30" color="red" />
                     </Grid>
-                    <Grid padding='0px' width='auto' margin='0px'>
-                      <BiFridge size='30' color='red' />
+                    <Grid padding="0px" width="auto" margin="0px">
+                      <BiFridge size="30" color="red" />
                     </Grid>
-                    <Grid padding='0px' width='auto' margin='0px'>
-                      <BiFridge size='30' color='red' />
+                    <Grid padding="0px" width="auto" margin="0px">
+                      <BiFridge size="30" color="red" />
                     </Grid>
                   </Grid>
 
-                  <Grid padding='0 0 0 40px' width='auto' margin='0px'>
-                    <Text size='16px' color='yellowgreen'>
+                  <Grid padding="0 0 0 40px" width="auto" margin="0px">
+                    <Text size="16px" color="yellowgreen">
                       {c.username}
                     </Text>
                   </Grid>
 
-                  <Text is_inline size='16px' margin='0 0 0 20px'>
+                  <Text is_inline size="16px" margin="0 0 0 20px">
                     {c.content}
                   </Text>
-                  <Button is_RectangleCancleBtn size='20'>
+                  <Button is_RectangleCancleBtn size="20">
                     <Text
-                      color='white'
-                      size='10px'
+                      color="white"
+                      size="10px"
                       _onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
                         if (loginUser == c.username)
-                          if (window.confirm('삭제하시겠습니까?'))
+                          if (window.confirm("삭제하시겠습니까?"))
                             delComment(c.id);
                       }}
                     >
