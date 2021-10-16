@@ -18,18 +18,18 @@ const Login = (props) => {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  // const login = () => {
-  //   if(id === "" || pwd === "")
-  //   {
-  //     window.alert("아이디 혹은 비밀번호가 공란입니다!")
-  //     return;
-  //   }
-  //   if(!emialCheck(id)) {
-  //     window.alert("이메일 형식이 맞지 않습니다!")
-  //     return;
-  //   }
-  //   dispatch(userActions.loginAPI(id,pwd))
-  // }
+  const login = () => {
+    if(id === "" || pwd === "")
+    {
+      window.alert("아이디 혹은 비밀번호가 공란입니다!")
+      return;
+    }
+    if(!emialCheck(id)) {
+      window.alert("이메일 형식이 맞지 않습니다!")
+      return;
+    }
+    dispatch(userActions.loginAPI(username,password))
+  }
   return (
     <Grid margin="100px 0px 0px 0px" justify_content="center">
       <Grid is_flex justify_content="center">
