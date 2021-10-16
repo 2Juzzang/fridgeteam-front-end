@@ -16,29 +16,24 @@ const Signup = (props) => {
   const [password, setPassword] = useState("");
   const [is_pwd, setIs_pwd] = useState("");
   const [email, setEmail] = useState("");
-  //  const signup = () => {
-  //    if (id === '' || pwd === '' || email === '') {
-  //      window.alert('아이디, 패스워드, 이메일을 모두 입력해주세요!');
-  //      return;
-  //    }
+   const signup = () => {
+     if (username === '' || password === '' || email === '') {
+       window.alert('아이디, 패스워드, 이메일을 모두 입력해주세요!');
+       return;
+     }
 
-  //    if (!emailCheck(id)) {
-  //      window.alert('이메일 형식이 맞지 않습니다!');
-  //      return;
-  //    }
+     if (password !== is_pwd) {
+       window.alert('패스워드와 패스워드 확인이 일치하지 않습니다!');
+       return;
+     }
+     if(password.length<8)
+     {
+       window.alert('비밀번호 8자 이상 입력해주세요');
+       return;
+     }
 
-  //    if (pwd !== is_pwd) {
-  //      window.alert('패스워드와 패스워드 확인이 일치하지 않습니다!');
-  //      return;
-  //    }
-  //    if(pwd.lenght<8)
-  //    {
-  //      window.alert('비밀번호 8자 이상 입력해주세요');
-  //      return;
-  //    }
-
-  //    dispatch(userActions.signupAPI(id, pwd, email));
-  //  };
+     dispatch(userActions.signupAPI(username, password, email));
+   };
   return (
     <Grid margin="100px 0px 0px 0px" justify_content="center">
       <Grid is_flex justify_content="center">
@@ -98,7 +93,7 @@ const Signup = (props) => {
           size=""
           text="확인"
           _onClick={() => {
-            dispatch(userActions.signupAPI(username, password, email));
+            signup();
           }}
         />
       </Grid>

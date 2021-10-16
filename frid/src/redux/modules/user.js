@@ -31,10 +31,11 @@ const loginAPI = (username, password) => {
     })
       .then((res) => {
         // if (res.data.token != null) {
-        console.log(res.data[0]);
+        console.log(res.data);
+        
         const jwtToken = res.data[1].token;
         const _id = res.data[0].username;
-       
+        
         setCookie('user_login', jwtToken);
         localStorage.setItem('user_name', _id);
         axios.defaults.headers.common['Authorization'] = `${jwtToken}`;
@@ -52,7 +53,8 @@ const loginAPI = (username, password) => {
         // }
       })
       .catch((err) => {
-        console.log('loginAPI에서 오류 발생', err);
+        window.alert('아이디와 비밀번호가 맞지 않습니다')
+       window.location.reload();
       });
   };
 };
@@ -121,7 +123,8 @@ const signupAPI = (username, password, email) => {
       })
       .catch((err) => {
         console.log('signupAPI에서 오류발생', err);
-        window.alert('회원가입에 실패했습니다.');
+        window.alert('이미 존재하고 있는 아이디입니다');
+        window.location.reload();
       });
   };
 };

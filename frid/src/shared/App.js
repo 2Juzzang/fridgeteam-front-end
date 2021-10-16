@@ -9,7 +9,7 @@ import Signup from "../pages/Signup"
 import { history } from "../redux/configStore"
 import "./App.css"
 import { Header } from "../components/Header"
-import Star from "../components/Star";
+
 import { useDispatch } from 'react-redux';
 import { getCookie } from './Cookie';
 import { actionCreators as userActions } from '../redux/modules/user';

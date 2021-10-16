@@ -19,15 +19,13 @@ const Login = (props) => {
   const [password, setPassword] = React.useState("");
 
   const login = () => {
-    if(id === "" || pwd === "")
+    if(username === "" || password === "")
     {
       window.alert("아이디 혹은 비밀번호가 공란입니다!")
       return;
     }
-    if(!emialCheck(id)) {
-      window.alert("이메일 형식이 맞지 않습니다!")
-      return;
-    }
+   
+    
     dispatch(userActions.loginAPI(username,password))
   }
   return (
@@ -69,7 +67,7 @@ const Login = (props) => {
           is_RectangleSubmitBtn
           size=""
           text="로그인"
-          _onClick={() => dispatch(userActions.loginAPI(username, password))}
+          _onClick={() => login()}
         />
       </Grid>
     </Grid>
